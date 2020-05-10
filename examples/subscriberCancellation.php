@@ -16,7 +16,7 @@ $subscriberCancellation->setForce(false);
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint('https://api.zotlo.com/');
 
 $client = new Client($credentials);
 $client->subscription()->setCancellation($subscriberCancellation);

@@ -9,19 +9,25 @@ use Zotlo\Connect\Entity\Request;
 $credentials = new Credentials();
 $credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
 
-$transaction = new \Zotlo\Connect\Entity\Transaction();
-$transaction->setTransactionId('b3947379-298f-4708-a3da-2ac6c25861fa');
 
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('https://api.zotlo.com/');
 
+
+$subscriber = new \Zotlo\Connect\Entity\Subscriber();
+$subscriber->setSubscriberId('3');
+
+$package = new \Zotlo\Connect\Entity\Product();
+$package->setPackageId('upgrate');
+
 $client = new Client($credentials);
-$client->transaction()->setTransaction($transaction);
-$client->transaction()->setRequest($request);
+$client->subscription()->setSubscriber($subscriber);
+$client->subscription()->setProduct($package);
+$client->subscription()->setRequest($request);
 
 try {
-    $response = $client->transaction()->transactionDetail();
+    $response = $client->subscription()->changePackage();
     print_r($response);
 
 } catch (\Zotlo\Connect\Exception\PaymentException $exception) {

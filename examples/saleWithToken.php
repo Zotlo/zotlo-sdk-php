@@ -30,7 +30,7 @@ $subcriber->setIpAddress('192.168.1.1');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint('https://api.zotlo.com/');
 
 $client = new Client($credentials);
 $client->payment()->setCardToken($cardToken);

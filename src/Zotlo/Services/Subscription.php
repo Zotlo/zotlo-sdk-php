@@ -14,6 +14,7 @@ use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Product;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Response\ChangePackageResponse;
 use Zotlo\Connect\Response\SubscriberCancellationResponse;
 use Zotlo\Connect\Response\SubscriberProfileResponse;
 
@@ -191,6 +192,21 @@ class Subscription extends HttpClient
         ]);
 
         return new SubscriberCancellationResponse($response);
+
+    }
+
+    /**
+     * @return ChangePackageResponse
+     * @throws PaymentException
+     */
+    public function changePackage(): ChangePackageResponse
+    {
+        $response = $this->post('subscription/change-package', [
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'packageId' => $this->getProduct()->getPackageId(),
+        ]);
+
+        return new ChangePackageResponse($response);
 
     }
 

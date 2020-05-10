@@ -35,10 +35,10 @@ $subcriber->setIpAddress('192.168.1.1');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint('https://api.zotlo.com/');
 
 $redirect = new Redirect();
-$redirect->setRedirectUrl('https://webhook.site/f3f0543d-f909-4395-8b27-39a41dd9185e');
+$redirect->setRedirectUrl('https://example.com/callback');
 
 $client = new Client($credentials);
 $client->payment()->setCard($card);
@@ -49,7 +49,8 @@ $client->payment()->setRedirect($redirect);
 
 try {
     $paymentResponse = $client->payment()->sale3D();
-    print_r($paymentResponse);
+    #Redirect Zotlo
+    header('Location: ' . $paymentResponse->getRedirect()->getUrl());
 
 } catch (\Zotlo\Connect\Exception\PaymentException $exception) {
     echo $exception->getErrorCode() . PHP_EOL;

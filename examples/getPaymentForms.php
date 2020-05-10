@@ -11,7 +11,7 @@ $credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint('https://api.zotlo.com/');
 
 $client = new Client($credentials);
 $client->payment()->setRequest($request);

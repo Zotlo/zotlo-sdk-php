@@ -34,7 +34,7 @@ $subcriber->setIpAddress('192.168.1.1');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint('https://api.zotlo.com/');
 
 $client = new Client($credentials);
 $client->payment()->setCard($card);
@@ -52,7 +52,6 @@ try {
         echo 'fail';
     }
 
-    echo '<pre>';
     print_r($paymentResponse->getResponse());
 
 } catch (\Zotlo\Connect\Exception\PaymentException $exception) {
@@ -60,6 +59,5 @@ try {
     echo $exception->getErrorMessage() . PHP_EOL;
     echo $exception->getHttpStatus() . PHP_EOL;
     print_r($exception->getMeta());
-    print_r($exception->getResult());
     print_r($exception->getResult());
 }

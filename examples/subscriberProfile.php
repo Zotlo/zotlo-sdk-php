@@ -10,11 +10,11 @@ $credentials = new Credentials();
 $credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
 
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('testtest');
+$subscriber->setSubscriberId('subscriber-id');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint('https://api.zotlo.com/');
 
 $client = new Client($credentials);
 $client->subscription()->setSubscriber($subscriber);

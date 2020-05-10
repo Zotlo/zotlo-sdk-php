@@ -3,12 +3,12 @@
   "type": "library",
   "description": "Zotlo.com subscription Management PHP-SDK.",
   "keywords": [
-    "verifykit"
+    "zotlo"
   ],
   "homepage": "https://zotlo.com",
   "license": "MIT",
   "require": {
-    "php": ">=5.5.0",
+    "php": ">=7.1.*",
     "ext-curl": "*",
     "guzzlehttp/guzzle": "~6.0"
   },
