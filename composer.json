@@ -8,7 +8,7 @@
   "homepage": "https://zotlo.com",
   "license": "MIT",
   "require": {
-    "php": ">=7.1.*",
+    "php": ">=7.1.0",
     "ext-curl": "*",
     "guzzlehttp/guzzle": "~6.0"
   },
