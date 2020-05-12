@@ -275,6 +275,7 @@ class Payment extends HttpClient
             'subscriberLastname' => $this->getSubscriber()->getLastName(),
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
+            'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
         ];
 
         $response = $this->post('payment/credit-card', $requestData);

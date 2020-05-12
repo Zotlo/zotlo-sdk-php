@@ -32,6 +32,7 @@ $subcriber->setFirstName('Test');
 $subcriber->setLastName('Test');
 $subcriber->setIpAddress('192.168.1.1');
 
+
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('https://api.zotlo.com/');
@@ -52,7 +53,12 @@ try {
         echo 'fail';
     }
 
-    print_r($paymentResponse->getResponse());
+    if ($paymentResponse->getPaymentStatus() == 'REDIRECT') {
+        header('Location:' . $paymentResponse->getRedirect());
+    } else {
+        print_r($paymentResponse);
+        echo 'complete';
+    }
 
 } catch (\Zotlo\Connect\Exception\PaymentException $exception) {
     echo $exception->getErrorCode() . PHP_EOL;

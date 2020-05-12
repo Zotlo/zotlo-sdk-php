@@ -27,6 +27,14 @@ class SaleResponse
      * @var array|null
      */
     private $profile = null;
+    /**
+     * @var string
+     */
+    private $paymentStatus = null;
+    /**
+     * @var string
+     */
+    private $redirect = null;
 
     /**
      * @return array
@@ -108,12 +116,48 @@ class SaleResponse
         $this->profile = $profile;
     }
 
+    /**
+     * @return string
+     */
+    public function getPaymentStatus()
+    {
+        return $this->paymentStatus;
+    }
+
+    /**
+     * @param string $paymentStatus
+     */
+    public function setPaymentStatus( $paymentStatus)
+    {
+        $this->paymentStatus = $paymentStatus;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRedirect()
+    {
+        return $this->redirect;
+    }
+
+    /**
+     * @param string $redirect
+     */
+    public function setRedirect( $redirect)
+    {
+        $this->redirect = $redirect;
+    }
+
+
+
     public function __construct($response)
     {
         $this->setMeta($response['meta']);
         $this->setProfile($response['result']['profile']);
         $this->setPackage($response['result']['package']);
         $this->setCard($response['result']['card']);
+        $this->setPaymentStatus($response['result']['paymentStatus']);
+        $this->setRedirect($response['result']['redirect']);
         $this->setResponse(new Transaction($response['result']['response']));
     }
 }
