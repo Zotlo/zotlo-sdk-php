@@ -48,7 +48,7 @@ class SavedCardResponse
     /**
      * @return string
      */
-    public function getCardToken(): string
+    public function getCardToken()
     {
         return $this->cardToken;
     }
@@ -56,7 +56,7 @@ class SavedCardResponse
     /**
      * @param string $cardToken
      */
-    public function setCardToken(string $cardToken)
+    public function setCardToken( $cardToken)
     {
         $this->cardToken = $cardToken;
     }
@@ -64,7 +64,7 @@ class SavedCardResponse
     /**
      * @return string
      */
-    public function getCardNumber(): string
+    public function getCardNumber()
     {
         return $this->cardNumber;
     }
@@ -72,7 +72,7 @@ class SavedCardResponse
     /**
      * @param string $cardNumber
      */
-    public function setCardNumber(string $cardNumber)
+    public function setCardNumber( $cardNumber)
     {
         $this->cardNumber = $cardNumber;
     }
@@ -80,7 +80,7 @@ class SavedCardResponse
     /**
      * @return string
      */
-    public function getCardExpire(): string
+    public function getCardExpire()
     {
         return $this->cardExpire;
     }
@@ -88,7 +88,7 @@ class SavedCardResponse
     /**
      * @param string $cardExpire
      */
-    public function setCardExpire(string $cardExpire)
+    public function setCardExpire( $cardExpire)
     {
         $this->cardExpire = $cardExpire;
     }

@@ -81,7 +81,7 @@ class Sale3DResponse
     /**
      * @return array
      */
-    public function getMeta(): array
+    public function getMeta()
     {
         return $this->meta;
     }
@@ -89,7 +89,7 @@ class Sale3DResponse
     /**
      * @param array $meta
      */
-    private function setMeta(array $meta)
+    private function setMeta( $meta)
     {
         $this->meta = $meta;
     }
