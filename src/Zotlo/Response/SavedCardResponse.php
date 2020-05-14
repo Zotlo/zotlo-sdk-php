@@ -2,8 +2,11 @@
 
 namespace Zotlo\Connect\Response;
 
-use Zotlo\Connect\Entity\Sale\Transaction;
 
+/**
+ * Class SavedCardResponse
+ * @package Zotlo\Connect\Response
+ */
 class SavedCardResponse
 {
 
@@ -91,6 +94,10 @@ class SavedCardResponse
     }
 
 
+    /**
+     * SavedCardResponse constructor.
+     * @param $response
+     */
     public function __construct($response)
     {
         $cards = $response['result']['cardList'];

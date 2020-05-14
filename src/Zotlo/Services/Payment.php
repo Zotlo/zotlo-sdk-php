@@ -17,6 +17,7 @@ use Zotlo\Connect\Entity\Product;
 use Zotlo\Connect\Entity\Redirect;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Response\ChangeCardResponse;
 use Zotlo\Connect\Response\CreateFormUrlResponse;
 use Zotlo\Connect\Response\PaymentFormResponse;
 use Zotlo\Connect\Response\RefundResponse;
@@ -394,6 +395,28 @@ class Payment extends HttpClient
 
         $response = $this->post('payment/refund', $requestData);
         return new RefundResponse($response);
+
+    }
+
+    /**
+     * @return ChangeCardResponse
+     * @throws PaymentException
+     */
+    public function changeCard(): ChangeCardResponse
+    {
+        $requestData = [
+            'cardNo' => $this->getCard()->getCardNumber(),
+            'cardOwner' => $this->getCard()->getcardHolderName(),
+            'expireMonth' => $this->getCard()->getExpireMonth(),
+            'expireYear' => $this->getCard()->getExpireYear(),
+            'cvv' => $this->getCard()->getCvv(),
+            'language' => $this->getSubscriber()->getLanguage(),
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+        ];
+
+        $response = $this->post('subscription/change-card', $requestData);
+        $salesResponse = new ChangeCardResponse($response);
+        return $salesResponse;
 
     }
 
