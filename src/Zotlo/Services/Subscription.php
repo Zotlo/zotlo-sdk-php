@@ -224,5 +224,19 @@ class Subscription extends HttpClient
         return new ChangePackageResponse($response);
 
     }
+    /**
+     * @return SubscriberProfileResponse
+     * @throws PaymentException
+     */
+    public function reactivated(): SubscriberProfileResponse
+    {
+        $response = $this->post('subscription/reactivate', [
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'packageId' => $this->getProduct()->getPackageId(),
+        ]);
+
+        return new SubscriberProfileResponse($response);
+
+    }
 
 }

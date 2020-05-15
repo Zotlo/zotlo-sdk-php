@@ -148,8 +148,8 @@ class ChangeCardResponse
     public function __construct($response)
     {
         $this->setMeta($response['meta']);
-        $this->setPaymentStatus($response['result']['paymentStatus']);
-        $this->setRedirect($response['result']['redirect']);
+        $this->setPaymentStatus($response['result']['response']['paymentStatus']);
+        $this->setRedirect($response['result']['response']['redirectUrl']);
         $this->setResponse(new Transaction($response['result']['response']));
     }
 }
