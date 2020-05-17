@@ -1,12 +1,17 @@
 <?php
+/**
+ * It's very easy to manage your subscriptions with Zotlo! Create your account now on zotlo.com, add your subscription packages and enable users to subscribe to your apps using a credit card.dd
+ *
+ * Docs : https://docs.zotlo.com/
+ */
 
 namespace Zotlo\Connect\Entity;
 
 /**
- * Class Product
+ * Class ChangePackage
  * @package Zotlo\Connect\Entity
  */
-class Product
+class ChangePackage
 {
     /**
      * @var string
@@ -17,6 +22,10 @@ class Product
      * @var string
      */
     public $newPackageId;
+    /**
+     * @var string
+     */
+    public $changeType;
 
     /**
      * @return string
@@ -51,5 +60,20 @@ class Product
         $this->newPackageId = $newPackageId;
     }
 
+    /**
+     * @return string
+     */
+    public function getChangeType()
+    {
+        return $this->changeType;
+    }
+
+    /**
+     * @param string $changeType
+     */
+    public function setChangeType($changeType)
+    {
+        $this->changeType = $changeType;
+    }
 
 }

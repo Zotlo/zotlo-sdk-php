@@ -28,6 +28,14 @@ class SaleResponse
      */
     private $profile = null;
     /**
+     * @var array|null
+     */
+    private $newPackage = null;
+    /**
+     * @var array|null
+     */
+    private $customer = null;
+    /**
      * @var string
      */
     private $paymentStatus = null;
@@ -127,7 +135,7 @@ class SaleResponse
     /**
      * @param string $paymentStatus
      */
-    public function setPaymentStatus( $paymentStatus)
+    public function setPaymentStatus($paymentStatus)
     {
         $this->paymentStatus = $paymentStatus;
     }
@@ -143,21 +151,53 @@ class SaleResponse
     /**
      * @param string $redirect
      */
-    public function setRedirect( $redirect)
+    public function setRedirect($redirect)
     {
         $this->redirect = $redirect;
     }
 
+    /**
+     * @return array|null
+     */
+    public function getNewPackage()
+    {
+        return $this->newPackage;
+    }
+
+    /**
+     * @param array|null $newPackage
+     */
+    public function setNewPackage($newPackage)
+    {
+        $this->newPackage = $newPackage;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param array|null $customer
+     */
+    public function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
 
 
     public function __construct($response)
     {
-        $this->setMeta($response['meta']);
-        $this->setProfile($response['result']['profile']);
-        $this->setPackage($response['result']['package']);
-        $this->setCard($response['result']['card']);
-        $this->setPaymentStatus($response['result']['paymentStatus']);
-        $this->setRedirect($response['result']['redirect']);
+        $this->setMeta(isset($response['meta']) ? $response['meta'] : '');
+        $this->setProfile(isset($response['result']['profile']) ? $response['result']['profile'] : null);
+        $this->setPackage(isset($response['result']['package']) ? $response['result']['package'] : null);
+        $this->setCard(isset($response['result']['card']) ? $response['result']['card'] : null);
+        $this->setNewPackage(isset($response['result']['newPackage']) ? $response['result']['newPackage'] : null);
+        $this->setPaymentStatus(isset($response['result']['paymentStatus']) ? $response['result']['paymentStatus'] : null);
+        $this->setRedirect(isset($response['result']['redirect']) ? $response['result']['redirect'] : null);
         $this->setResponse(new Transaction($response['result']['response']));
     }
 }

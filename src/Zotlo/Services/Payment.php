@@ -8,6 +8,7 @@
 namespace Zotlo\Connect\Services;
 
 use Zotlo\Connect\Entity\Card;
+use Zotlo\Connect\Entity\ChangePackage;
 use Zotlo\Connect\Entity\Form;
 use Zotlo\Connect\Entity\Refund;
 use Zotlo\Connect\Exception\PaymentException;
@@ -44,6 +45,10 @@ class Payment extends HttpClient
      * @var Product
      */
     private $product = null;
+    /**
+     * @var ChangePackage
+     */
+    private $changePackage = null;
 
     /**
      * @var Card
@@ -245,6 +250,22 @@ class Payment extends HttpClient
         $this->refund = $refund;
     }
 
+    /**
+     * @return ChangePackage
+     */
+    public function getChangePackage(): ChangePackage
+    {
+        return $this->changePackage;
+    }
+
+    /**
+     * @param ChangePackage $changePackage
+     */
+    public function setChangePackage(ChangePackage $changePackage)
+    {
+        $this->changePackage = $changePackage;
+    }
+
 
     /**
      * Payment constructor.
@@ -418,6 +439,52 @@ class Payment extends HttpClient
         $salesResponse = new ChangeCardResponse($response);
         return $salesResponse;
 
+    }
+
+    public function saveCard(): SaleResponse
+    {
+        $requestData = [
+            'cardNo' => $this->getCard()->getCardNumber(),
+            'cardOwner' => $this->getCard()->getcardHolderName(),
+            'expireMonth' => $this->getCard()->getExpireMonth(),
+            'expireYear' => $this->getCard()->getExpireYear(),
+            'cvv' => $this->getCard()->getCvv(),
+            'language' => $this->getSubscriber()->getLanguage(),
+            'packageId' => $this->getProduct()->getPackageId(),
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'subscriberCountry' => $this->getSubscriber()->getCountry(),
+            'subscriberPhoneNumber' => $this->getSubscriber()->getPhoneNumber(),
+            'subscriberFirstname' => $this->getSubscriber()->getFirstName(),
+            'subscriberLastname' => $this->getSubscriber()->getLastName(),
+            'subscriberEmail' => $this->getSubscriber()->getEmail(),
+            'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
+            'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
+        ];
+
+        $response = $this->post('payment/save-card', $requestData);
+        $salesResponse = new SaleResponse($response);
+        return $salesResponse;
+    }
+
+    public function changeSubscriberPackage(): SaleResponse
+    {
+        $requestData = [
+            'cardNo' => $this->getCard()->getCardNumber(),
+            'cardOwner' => $this->getCard()->getcardHolderName(),
+            'expireMonth' => $this->getCard()->getExpireMonth(),
+            'expireYear' => $this->getCard()->getExpireYear(),
+            'cvv' => $this->getCard()->getCvv(),
+            'language' => $this->getSubscriber()->getLanguage(),
+            'newPackageId' => $this->getChangePackage()->getNewPackageId(),
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
+            'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
+            'changeType' => $this->getChangePackage()->getChangeType(),
+        ];
+
+        $response = $this->post('payment/change-package', $requestData);
+        $salesResponse = new SaleResponse($response);
+        return $salesResponse;
     }
 
 }

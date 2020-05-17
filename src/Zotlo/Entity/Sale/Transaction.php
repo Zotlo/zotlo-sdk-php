@@ -137,12 +137,12 @@ class Transaction
 
     public function __construct($result)
     {
-        $this->setIsSuccess($result['isSuccess']);
-        $this->setTransactionId($result['transactionId']);
-        $this->setPaymentDate($result['paymentDate']);
-        $this->setStatusCode($result['S0000001']);
-        $this->setStatusMessage($result['statusMessage']);
-        $this->setProviderResponse($result['providerResponse']);
+        $this->setIsSuccess(isset($result['isSuccess']) ? $result['isSuccess'] : null);
+        $this->setTransactionId(isset($result['transactionId']) ? $result['transactionId'] : null);
+        $this->setPaymentDate(isset($result['paymentDate']) ? $result['paymentDate'] : null);
+        $this->setStatusCode(isset($result['statusCode']) ? $result['statusCode'] : null);
+        $this->setStatusMessage(isset($result['statusMessage']) ? $result['statusMessage'] : null);
+        $this->setProviderResponse(isset($result['providerResponse']) ? $result['providerResponse'] : null);
     }
 
 }
