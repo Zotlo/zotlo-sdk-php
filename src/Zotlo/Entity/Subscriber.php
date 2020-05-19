@@ -51,6 +51,7 @@ class Subscriber
 
     /**
      * @param string $subscriberId
+     * @return $this
      */
     public function setSubscriberId($subscriberId)
     {
@@ -68,6 +69,7 @@ class Subscriber
 
     /**
      * @param string $country
+     * @return $this
      */
     public function setCountry($country)
     {
@@ -85,6 +87,7 @@ class Subscriber
 
     /**
      * @param string $phoneNumber
+     * @return $this
      */
     public function setPhoneNumber($phoneNumber)
     {
@@ -102,6 +105,7 @@ class Subscriber
 
     /**
      * @param string $firstName
+     * @return $this
      */
     public function setFirstName($firstName)
     {
@@ -119,6 +123,7 @@ class Subscriber
 
     /**
      * @param string $lastName
+     * @return $this
      */
     public function setLastName($lastName)
     {
@@ -136,6 +141,7 @@ class Subscriber
 
     /**
      * @param string $email
+     * @return $this
      */
     public function setEmail($email)
     {
@@ -153,6 +159,7 @@ class Subscriber
 
     /**
      * @param string $language
+     * @return $this
      */
     public function setLanguage($language)
     {
@@ -170,10 +177,12 @@ class Subscriber
 
     /**
      * @param string $ipAddress
+     * @return $this
      */
     public function setIpAddress($ipAddress)
     {
         $this->ipAddress = $ipAddress;
+        return $this;
     }
 
 

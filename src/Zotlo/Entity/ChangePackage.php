@@ -37,6 +37,7 @@ class ChangePackage
 
     /**
      * @param string $packageId
+     * @return $this
      */
     public function setPackageId($packageId)
     {
@@ -54,10 +55,12 @@ class ChangePackage
 
     /**
      * @param string $newPackageId
+     * @return $this;
      */
     public function setNewPackageId($newPackageId)
     {
         $this->newPackageId = $newPackageId;
+        return $this;
     }
 
     /**
@@ -70,10 +73,12 @@ class ChangePackage
 
     /**
      * @param string $changeType
+     * @return $this
      */
     public function setChangeType($changeType)
     {
         $this->changeType = $changeType;
+        return $this;
     }
 
 }

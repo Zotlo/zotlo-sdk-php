@@ -47,7 +47,7 @@ class ChangePackageResponse
     /**
      * @param mixed $newPackage
      */
-    public function setNewPackage($newPackage)
+    private function setNewPackage($newPackage)
     {
         $this->newPackage = $newPackage;
     }

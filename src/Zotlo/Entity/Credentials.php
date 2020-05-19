@@ -33,6 +33,7 @@ class Credentials
 
     /**
      * @param string $accessKey
+     * @return $this;
      */
     public function setAccessKey($accessKey)
     {
@@ -50,6 +51,7 @@ class Credentials
 
     /**
      * @param string $accessSecurity
+     * @return $this;
      */
     public function setAccessSecurity($accessSecurity)
     {
@@ -67,6 +69,7 @@ class Credentials
 
     /**
      * @param string $applicationId
+     * @return $this;
      */
     public function setApplicationId($applicationId)
     {

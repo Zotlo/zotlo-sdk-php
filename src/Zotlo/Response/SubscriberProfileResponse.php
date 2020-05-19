@@ -27,6 +27,14 @@ class SubscriberProfileResponse
      * @var array
      */
     private $meta;
+    /**
+     * @var array
+     */
+    private $customer;
+    /**
+     * @var array
+     */
+    private $newPackage;
 
     /**
      * @return array
@@ -92,6 +100,38 @@ class SubscriberProfileResponse
         $this->card = $card;
     }
 
+    /**
+     * @return array
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @param array $customer
+     */
+    private function setCustomer($customer)
+    {
+        $this->customer = $customer;
+    }
+
+    /**
+     * @return array
+     */
+    public function getNewPackage()
+    {
+        return $this->newPackage;
+    }
+
+    /**
+     * @param array $newPackage
+     */
+    private function setNewPackage($newPackage)
+    {
+        $this->newPackage = $newPackage;
+    }
+
 
     /**
      * SubscriberProfileResponse constructor.
@@ -100,9 +140,13 @@ class SubscriberProfileResponse
     public function __construct($response)
     {
         $this->setMeta($response['meta']);
-        $this->setProfile($response['result']['profile']);
-        $this->setCard($response['result']['card']);
-        $this->setPackage($response['result']['package']);
+        $this->setProfile(isset($response['result']['profile']) ? $response['result']['profile'] : null);
+        $this->setCard(isset($response['result']['card']) ? $response['result']['card'] : null);
+        $this->setPackage(isset($response['result']['package']) ? $response['result']['package'] : null);
+        $this->setPackage(isset($response['result']['customer']) ? $response['result']['customer'] : null);
+        $this->setPackage(isset($response['result']['newPackage']) ? $response['result']['newPackage'] : null);
+        $this->setCustomer(isset($response['result']['customer']) ? $response['result']['customer'] : null);
+        $this->setNewPackage(isset($response['result']['newPackage']) ? $response['result']['newPackage'] : null);
 
     }
 }

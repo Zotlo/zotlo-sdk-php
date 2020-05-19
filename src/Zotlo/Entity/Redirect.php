@@ -23,6 +23,7 @@ class Redirect
 
     /**
      * @param null $redirectUrl
+     * @return $this;
      */
     public function setRedirectUrl($redirectUrl)
     {

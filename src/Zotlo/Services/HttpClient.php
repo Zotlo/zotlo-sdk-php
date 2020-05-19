@@ -7,6 +7,10 @@ use GuzzleHttp\Exception\RequestException;
 use Zotlo\Connect\Entity\Constants;
 use Zotlo\Connect\Exception\PaymentException;
 
+/**
+ * Class HttpClient
+ * @package Zotlo\Connect\Services
+ */
 abstract class HttpClient
 {
 

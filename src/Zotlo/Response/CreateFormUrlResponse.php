@@ -4,6 +4,10 @@ namespace Zotlo\Connect\Response;
 
 use Zotlo\Connect\Entity\Transaction;
 
+/**
+ * Class CreateFormUrlResponse
+ * @package Zotlo\Connect\Response
+ */
 class CreateFormUrlResponse
 {
     /**
@@ -70,6 +74,10 @@ class CreateFormUrlResponse
     }
 
 
+    /**
+     * CreateFormUrlResponse constructor.
+     * @param $response
+     */
     public function __construct($response)
     {
         $this->setMeta($response['meta']);

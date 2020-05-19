@@ -28,6 +28,7 @@ class Product
 
     /**
      * @param string $packageId
+     * @return $this;
      */
     public function setPackageId($packageId)
     {
@@ -45,6 +46,7 @@ class Product
 
     /**
      * @param string $newPackageId
+     * @return $this;
      */
     public function setNewPackageId($newPackageId)
     {

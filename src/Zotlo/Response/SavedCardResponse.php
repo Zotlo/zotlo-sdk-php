@@ -40,7 +40,7 @@ class SavedCardResponse
     /**
      * @param null $meta
      */
-    public function setMeta($meta)
+    private function setMeta($meta)
     {
         $this->meta = $meta;
     }
@@ -56,7 +56,7 @@ class SavedCardResponse
     /**
      * @param string $cardToken
      */
-    public function setCardToken( $cardToken)
+    private function setCardToken( $cardToken)
     {
         $this->cardToken = $cardToken;
     }
@@ -72,7 +72,7 @@ class SavedCardResponse
     /**
      * @param string $cardNumber
      */
-    public function setCardNumber( $cardNumber)
+    private function setCardNumber( $cardNumber)
     {
         $this->cardNumber = $cardNumber;
     }
@@ -88,7 +88,7 @@ class SavedCardResponse
     /**
      * @param string $cardExpire
      */
-    public function setCardExpire( $cardExpire)
+    private function setCardExpire( $cardExpire)
     {
         $this->cardExpire = $cardExpire;
     }

@@ -39,10 +39,12 @@ class Transaction
 
     /**
      * @param string $transactionId
+     * @return $this
      */
     public function setTransactionId($transactionId)
     {
         $this->transactionId = $transactionId;
+        return $this;
     }
 
     /**
@@ -55,10 +57,12 @@ class Transaction
 
     /**
      * @param string $subscriberId
+     * @return $this
      */
     public function setSubscriberId($subscriberId)
     {
         $this->subscriberId = $subscriberId;
+        return $this;
     }
 
     /**
@@ -71,10 +75,12 @@ class Transaction
 
     /**
      * @param string $paymentType
+     * @return $this
      */
     public function setPaymentType($paymentType)
     {
         $this->paymentType = $paymentType;
+        return $this;
     }
 
     /**
@@ -87,10 +93,12 @@ class Transaction
 
     /**
      * @param string $startDate
+     * @return $this
      */
     public function setStartDate($startDate)
     {
         $this->startDate = $startDate;
+        return $this;
     }
 
     /**
@@ -103,10 +111,12 @@ class Transaction
 
     /**
      * @param string $endDate
+     * @return $this
      */
     public function setEndDate($endDate)
     {
         $this->endDate = $endDate;
+        return $this;
     }
 
     /**
@@ -119,10 +129,12 @@ class Transaction
 
     /**
      * @param string $packageId
+     * @return $this
      */
     public function setPackageId($packageId)
     {
         $this->packageId = $packageId;
+        return $this;
     }
 
 

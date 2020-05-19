@@ -465,7 +465,6 @@ class Payment extends HttpClient
         $salesResponse = new SaleResponse($response);
         return $salesResponse;
     }
-
     public function changeSubscriberPackage(): SaleResponse
     {
         $requestData = [
@@ -473,6 +472,7 @@ class Payment extends HttpClient
             'cardOwner' => $this->getCard()->getcardHolderName(),
             'expireMonth' => $this->getCard()->getExpireMonth(),
             'expireYear' => $this->getCard()->getExpireYear(),
+            'cardToken' => $this->getCardToken()->getToken(),
             'cvv' => $this->getCard()->getCvv(),
             'language' => $this->getSubscriber()->getLanguage(),
             'newPackageId' => $this->getChangePackage()->getNewPackageId(),

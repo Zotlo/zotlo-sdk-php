@@ -23,10 +23,12 @@ class Form
 
     /**
      * @param string $formId
+     * @return $this;
      */
     public function setFormId($formId)
     {
         $this->formId = $formId;
+        return $this;
     }
 
 

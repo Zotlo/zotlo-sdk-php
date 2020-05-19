@@ -33,6 +33,10 @@ class Client
     public $subscription;
 
 
+    /**
+     * Client constructor.
+     * @param Credentials $credentials
+     */
     public function __construct(Credentials $credentials)
     {
         $this->payment = new Payment($credentials);
@@ -40,16 +44,25 @@ class Client
         $this->subscription = new Subscription($credentials);
     }
 
+    /**
+     * @return Payment
+     */
     public function payment(): Payment
     {
         return $this->payment;
     }
 
+    /**
+     * @return Transaction
+     */
     public function transaction(): Transaction
     {
         return $this->transaction;
     }
 
+    /**
+     * @return Subscription
+     */
     public function subscription(): Subscription
     {
         return $this->subscription;

@@ -135,6 +135,10 @@ class Transaction
         $this->providerResponse = $providerResponse;
     }
 
+    /**
+     * Transaction constructor.
+     * @param $result
+     */
     public function __construct($result)
     {
         $this->setIsSuccess(isset($result['isSuccess']) ? $result['isSuccess'] : null);

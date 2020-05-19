@@ -28,10 +28,12 @@ class Refund
 
     /**
      * @param string $transactionId
+     * @return $this;
      */
     public function setTransactionId($transactionId)
     {
         $this->transactionId = $transactionId;
+        return $this;
     }
 
     /**
@@ -44,10 +46,12 @@ class Refund
 
     /**
      * @param string $reason
+     * @return $this;
      */
     public function setReason($reason)
     {
         $this->reason = $reason;
+        return $this;
     }
 
 

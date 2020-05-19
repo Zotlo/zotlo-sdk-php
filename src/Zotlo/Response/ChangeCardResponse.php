@@ -119,7 +119,7 @@ class ChangeCardResponse
     /**
      * @param string $paymentStatus
      */
-    public function setPaymentStatus($paymentStatus)
+    private function setPaymentStatus($paymentStatus)
     {
         $this->paymentStatus = $paymentStatus;
     }
@@ -135,7 +135,7 @@ class ChangeCardResponse
     /**
      * @param string $redirect
      */
-    public function setRedirect($redirect)
+    private function setRedirect($redirect)
     {
         $this->redirect = $redirect;
     }

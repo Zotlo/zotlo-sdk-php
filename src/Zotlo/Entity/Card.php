@@ -43,6 +43,7 @@ class Card
 
     /**
      * @param string $cardNumber
+     * @return $this
      */
     public function setCardNumber($cardNumber)
     {
@@ -60,6 +61,7 @@ class Card
 
     /**
      * @param string $expireMonth
+     * @return $this
      */
     public function setExpireMonth($expireMonth)
     {
@@ -77,6 +79,7 @@ class Card
 
     /**
      * @param string $expireYear
+     * @return $this
      */
     public function setExpireYear($expireYear)
     {
@@ -92,8 +95,10 @@ class Card
         return $this->cvv;
     }
 
+
     /**
-     * @param string $cvv
+     * @param $cvv
+     * @return $this
      */
     public function setCvv($cvv)
     {
@@ -111,6 +116,7 @@ class Card
 
     /**
      * @param string $cardHolderName
+     * @return $this
      */
     public function setcardHolderName($cardHolderName)
     {

@@ -31,10 +31,12 @@ class SubscriberCancellation
 
     /**
      * @param string $subscriberId
+     * @return $this
      */
     public function setSubscriberId($subscriberId)
     {
         $this->subscriberId = $subscriberId;
+        return $this;
     }
 
     /**
@@ -47,10 +49,12 @@ class SubscriberCancellation
 
     /**
      * @param string $reason
+     * @return $this
      */
     public function setReason($reason)
     {
         $this->reason = $reason;
+        return $this;
     }
 
     /**
@@ -63,10 +67,12 @@ class SubscriberCancellation
 
     /**
      * @param bool $force
+     * @return $this
      */
     public function setForce($force)
     {
         $this->force = $force;
+        return $this;
     }
 
 }

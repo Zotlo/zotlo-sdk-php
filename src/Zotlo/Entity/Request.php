@@ -27,10 +27,12 @@ class Request
 
     /**
      * @param string $platform
+     * @return $this
      */
     public function setPlatform($platform)
     {
         $this->platform = $platform;
+        return $this;
     }
 
     /**
@@ -43,10 +45,12 @@ class Request
 
     /**
      * @param string $endpoint
+     * @return $this
      */
     public function setEndpoint($endpoint)
     {
         $this->endpoint = $endpoint;
+        return $this;
     }
 
 }

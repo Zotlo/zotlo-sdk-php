@@ -111,6 +111,10 @@ class Transaction extends HttpClient
         return new TransactionListResponse($response);
     }
 
+    /**
+     * @return TransactionDetailResponse
+     * @throws \Zotlo\Connect\Exception\PaymentException
+     */
     public function transactionDetail()
     {
         $response = $this->get('transaction/detail', [

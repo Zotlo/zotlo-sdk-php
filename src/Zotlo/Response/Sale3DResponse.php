@@ -6,6 +6,10 @@ use Zotlo\Connect\Entity\Sale3D\Payment;
 use Zotlo\Connect\Entity\Sale3D\Redirect;
 use Zotlo\Connect\Entity\Sale3D\Subscriber;
 
+/**
+ * Class Sale3DResponse
+ * @package Zotlo\Connect\Response
+ */
 class Sale3DResponse
 {
 
@@ -95,6 +99,10 @@ class Sale3DResponse
     }
 
 
+    /**
+     * Sale3DResponse constructor.
+     * @param $response
+     */
     public function __construct($response)
     {
         $this->setMeta($response['meta']);
