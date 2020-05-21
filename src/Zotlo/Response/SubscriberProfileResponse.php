@@ -3,6 +3,13 @@
 namespace Zotlo\Connect\Response;
 
 
+use Zotlo\Connect\Entity\Meta;
+use Zotlo\Connect\Entity\Profile\Card;
+use Zotlo\Connect\Entity\Profile\Customer;
+use Zotlo\Connect\Entity\Profile\NewPackage;
+use Zotlo\Connect\Entity\Profile\Package;
+use Zotlo\Connect\Entity\Profile\Profile;
+
 /**
  * Class SubscriberProfileResponse
  * @package Zotlo\Connect\Response
@@ -11,142 +18,94 @@ class SubscriberProfileResponse
 {
 
     /**
-     * @var array
+     * @var Profile
      */
     private $profile;
+
     /**
-     * @var array
+     * @var Package
      */
     private $package;
     /**
      * /**
-     * @var array
+     * @var Card
      */
     private $card;
     /**
-     * @var array
+     * @var Meta
      */
     private $meta;
     /**
-     * @var array
+     * @var Customer
      */
     private $customer;
     /**
-     * @var array
+     * @var NewPackage
      */
     private $newPackage;
 
     /**
-     * @return array
+     * @return Profile
      */
-    public function getMeta()
-    {
-        return $this->meta;
-    }
-
-    /**
-     * @param array $meta
-     */
-    private function setMeta($meta)
-    {
-        $this->meta = $meta;
-    }
-
-    /**
-     * @return array
-     */
-    public function getProfile()
+    public function getProfile(): ?Profile
     {
         return $this->profile;
     }
 
     /**
-     * @param array $profile
+     * @return Package
      */
-    private function setProfile($profile)
-    {
-        $this->profile = $profile;
-    }
-
-    /**
-     * @return array
-     */
-    public function getPackage()
+    public function getPackage(): ?Package
     {
         return $this->package;
     }
 
     /**
-     * @param array $package
+     * @return Card
      */
-    private function setPackage($package)
-    {
-        $this->package = $package;
-    }
-
-    /**
-     * @return array
-     */
-    public function getCard()
+    public function getCard(): ?Card
     {
         return $this->card;
     }
 
     /**
-     * @param array $card
+     * @return Meta
      */
-    private function setCard($card)
+    public function getMeta(): ?Meta
     {
-        $this->card = $card;
+        return $this->meta;
     }
 
     /**
-     * @return array
+     * @return Customer
      */
-    public function getCustomer()
+    public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
 
     /**
-     * @param array $customer
+     * @return NewPackage[]
      */
-    private function setCustomer($customer)
-    {
-        $this->customer = $customer;
-    }
-
-    /**
-     * @return array
-     */
-    public function getNewPackage()
+    public function getNewPackage(): ?NewPackage
     {
         return $this->newPackage;
-    }
-
-    /**
-     * @param array $newPackage
-     */
-    private function setNewPackage($newPackage)
-    {
-        $this->newPackage = $newPackage;
     }
 
 
     /**
      * SubscriberProfileResponse constructor.
-     * @param $response
+     * @param $result
      */
     public function __construct($response)
     {
-        $this->setMeta($response['meta']);
-        $this->setProfile(isset($response['result']['profile']) ? $response['result']['profile'] : null);
-        $this->setCard(isset($response['result']['card']) ? $response['result']['card'] : null);
-        $this->setPackage(isset($response['result']['package']) ? $response['result']['package'] : null);
-        $this->setPackage(isset($response['result']['customer']) ? $response['result']['customer'] : null);
-        $this->setPackage(isset($response['result']['newPackage']) ? $response['result']['newPackage'] : null);
-        $this->setCustomer(isset($response['result']['customer']) ? $response['result']['customer'] : null);
-        $this->setNewPackage(isset($response['result']['newPackage']) ? $response['result']['newPackage'] : null);
-
+        $result = $response['result'];
+        
+        $this->meta = isset($response['meta']) ? new Meta($response['meta']) : null;
+        $this->profile = isset($result['profile']) && $result['profile'] != null ? (new Profile($result['profile'])) : null;
+        $this->package = isset($result['package']) && $result['package'] != null ? new Package($result['package']) : null;
+        $this->newPackage = isset($result['newPackage']) && $result['newPackage'] != null ? new NewPackage($result['newPackage']) : null;
+        $this->card = isset($result['card']) && $result['card'] != null ? new Card($result['card']) : null;
+        $this->customer = isset($result['customer']) && $result['customer'] != null ? new Customer($result['customer']) : null;
     }
 }

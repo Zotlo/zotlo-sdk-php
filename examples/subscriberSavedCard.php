@@ -10,7 +10,7 @@ $credentials = new Credentials();
 $credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
 
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('deneme-1234');
+$subscriber->setSubscriberId('testtes4t');
 
 $request = new Request();
 $request->setPlatform('web');
@@ -21,7 +21,7 @@ $client->subscription()->setSubscriber($subscriber);
 $client->subscription()->setRequest($request);
 
 try {
-    $response = $client->subscription()->getCardList();
+    $response = $client->subscription()->getCardList()->getCards();
     print_r($response);
 
 } catch (\Zotlo\Connect\Exception\PaymentException $exception) {

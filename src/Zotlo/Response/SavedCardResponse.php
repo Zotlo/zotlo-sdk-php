@@ -3,6 +3,9 @@
 namespace Zotlo\Connect\Response;
 
 
+use Zotlo\Connect\Entity\CardList\CardItem;
+use Zotlo\Connect\Entity\Meta;
+
 /**
  * Class SavedCardResponse
  * @package Zotlo\Connect\Response
@@ -11,23 +14,13 @@ class SavedCardResponse
 {
 
     /**
-     * @return array
+     * @return Meta
      */
     private $meta = null;
     /**
-     * @var string
+     * @var CardItem[}
      */
-    private $cardToken;
-
-    /**
-     * @var string
-     */
-    private $cardNumber = null;
-
-    /**
-     * @var string
-     */
-    private $cardExpire;
+    private $cards;
 
     /**
      * @return null
@@ -38,61 +31,12 @@ class SavedCardResponse
     }
 
     /**
-     * @param null $meta
+     * @return CardItem[]
      */
-    private function setMeta($meta)
+    public function getCards() : array
     {
-        $this->meta = $meta;
+        return $this->cards;
     }
-
-    /**
-     * @return string
-     */
-    public function getCardToken()
-    {
-        return $this->cardToken;
-    }
-
-    /**
-     * @param string $cardToken
-     */
-    private function setCardToken( $cardToken)
-    {
-        $this->cardToken = $cardToken;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCardNumber()
-    {
-        return $this->cardNumber;
-    }
-
-    /**
-     * @param string $cardNumber
-     */
-    private function setCardNumber( $cardNumber)
-    {
-        $this->cardNumber = $cardNumber;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCardExpire()
-    {
-        return $this->cardExpire;
-    }
-
-    /**
-     * @param string $cardExpire
-     */
-    private function setCardExpire( $cardExpire)
-    {
-        $this->cardExpire = $cardExpire;
-    }
-
 
     /**
      * SavedCardResponse constructor.
@@ -101,14 +45,16 @@ class SavedCardResponse
     public function __construct($response)
     {
         $cards = $response['result']['cardList'];
+        $cardItems = [];
 
         if (count($cards) > 0) {
-            $this->setCardNumber($cards[0]['cardNumber']);
-            $this->setCardToken($cards[0]['token']);
-            $this->setCardExpire($cards[0]['cardExpire']);
+            foreach ($cards as $card) {
+                $cardItems[] = new CardItem($card);
+            }
         }
 
-        $this->setMeta($response['meta']);
+        $this->meta = new Meta($response['meta']);
+        $this->cards = $cardItems;
 
     }
 }
