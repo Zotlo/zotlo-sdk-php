@@ -39,6 +39,7 @@ abstract class HttpClient
                     'AccessKey' => $this->getCredentials()->getAccessKey(),
                     'AccessSecret' => $this->getCredentials()->getAccessSecurity(),
                     'ApplicationId' => $this->getCredentials()->getApplicationId(),
+                    'Language' => $this->getRequest()->getLanguage(),
                 ],
             ]);
 
@@ -66,6 +67,7 @@ abstract class HttpClient
                     'AccessKey' => $this->getCredentials()->getAccessKey(),
                     'AccessSecret' => $this->getCredentials()->getAccessSecurity(),
                     'ApplicationId' => $this->getCredentials()->getApplicationId(),
+                    'Language' => $this->getRequest()->getLanguage(),
                 ],
             ]);
 

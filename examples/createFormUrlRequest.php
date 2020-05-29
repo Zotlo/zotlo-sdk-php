@@ -35,6 +35,8 @@ $subcriber->setLastName('Test');
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('https://api.zotlo.com/');
+$request->setLanguage('en');
+
 
 $client = new Client($credentials);
 $client->payment()->setForm($cardToken);

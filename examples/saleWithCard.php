@@ -36,6 +36,8 @@ $subcriber->setIpAddress('192.168.1.1');
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('https://api.zotlo.com/');
+$request->setLanguage('en');
+
 
 $client = new Client($credentials);
 $client->payment()->setCard($card);

@@ -15,6 +15,8 @@ $subscriber->setSubscriberId('testtes4t');
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('http://api.zotlo.localhost/');
+$request->setLanguage('en');
+
 
 $client = new Client($credentials);
 $client->subscription()->setSubscriber($subscriber);

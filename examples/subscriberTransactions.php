@@ -19,6 +19,8 @@ $transaction->setPaymentType('');
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('https://api.zotlo.com/');
+$request->setLanguage('en');
+
 
 $client = new Client($credentials);
 $client->transaction()->setTransaction($transaction);

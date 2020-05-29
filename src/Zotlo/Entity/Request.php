@@ -18,6 +18,11 @@ class Request
     private $endpoint = null;
 
     /**
+     * @var string
+     */
+    private $language = 'en';
+
+    /**
      * @return string
      */
     public function getPlatform()
@@ -52,5 +57,22 @@ class Request
         $this->endpoint = $endpoint;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    /**
+     * @param string $language
+     */
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
 
 }

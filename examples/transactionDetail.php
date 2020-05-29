@@ -10,11 +10,13 @@ $credentials = new Credentials();
 $credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
 
 $transaction = new \Zotlo\Connect\Entity\Transaction();
-$transaction->setTransactionId('b3947379-298f-4708-a3da-2ac6c25861fa');
+$transaction->setTransactionId('b3947379-298f-4708-a3da-2ac6c25861fa3');
 
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('https://api.zotlo.com/');
+$request->setLanguage('en');
+
 
 $client = new Client($credentials);
 $client->transaction()->setTransaction($transaction);

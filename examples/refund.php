@@ -13,6 +13,7 @@ $credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
 $request = new Request();
 $request->setPlatform('web');
 $request->setEndpoint('https://api.zotlo.com/');
+$request->setLanguage('en');
 
 $refund = new Refund();
 $refund->setTransactionId('f564d351-c6d4-4092-b8a3-1d0efab0e446');
