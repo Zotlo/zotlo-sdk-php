@@ -122,7 +122,7 @@ class NewPackage
         $this->discountPrice = isset($result['discountPrice']) ? (float)$result['discountPrice'] : 0.0;
         $this->price = isset($result['price']) ? (float)$result['price'] : 0.0;
         $this->currency = isset($result['currency']) ? $result['currency'] : null;
-        $this->period = isset($result['period']) ? (int)$result['packageType'] : 0;
+        $this->period = isset($result['period']) ? (int)$result['period'] : 0;
     }
 
 }
