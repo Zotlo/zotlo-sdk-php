@@ -15,6 +15,7 @@ use Zotlo\Connect\Entity\Product;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Response\ChangePackageResponse;
+use Zotlo\Connect\Response\PackageDowngradeCancelResponse;
 use Zotlo\Connect\Response\SavedCardResponse;
 use Zotlo\Connect\Response\SubscriberCancellationResponse;
 use Zotlo\Connect\Response\SubscriberProfileResponse;
@@ -238,5 +239,22 @@ class Subscription extends HttpClient
         return new SubscriberProfileResponse($response);
 
     }
+
+    /**
+     * @return PackageDowngradeCancelResponse
+     * @throws PaymentException
+     */
+    public function packageDowngradeCancel(): PackageDowngradeCancelResponse
+    {
+        $response = $this->post('subscription/package-downgrade-cancel', [
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'packageId' => $this->getProduct()->getPackageId(),
+        ]);
+
+        return new PackageDowngradeCancelResponse($response);
+
+    }
+
+
 
 }
