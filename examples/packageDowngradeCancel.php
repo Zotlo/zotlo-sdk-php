@@ -24,12 +24,8 @@ $request->setLanguage('en');
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
 $subscriber->setSubscriberId('9053898374531');
 
-$package = new \Zotlo\Connect\Entity\Product();
-$package->setPackageId('upgrate');
-
 $client = new Client($credentials);
 $client->subscription()->setSubscriber($subscriber);
-$client->subscription()->setProduct($package);
 $client->subscription()->setRequest($request);
 
 try {

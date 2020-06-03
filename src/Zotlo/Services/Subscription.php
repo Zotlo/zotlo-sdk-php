@@ -225,6 +225,7 @@ class Subscription extends HttpClient
         return new ChangePackageResponse($response);
 
     }
+
     /**
      * @return SubscriberProfileResponse
      * @throws PaymentException
@@ -248,13 +249,11 @@ class Subscription extends HttpClient
     {
         $response = $this->post('subscription/package-downgrade-cancel', [
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
-            'packageId' => $this->getProduct()->getPackageId(),
         ]);
 
         return new PackageDowngradeCancelResponse($response);
 
     }
-
 
 
 }
