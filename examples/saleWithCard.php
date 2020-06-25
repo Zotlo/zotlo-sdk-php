@@ -3,11 +3,11 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Zotlo\Connect\Client;
-use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Card;
+use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Product;
-use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Entity\Request;
+use Zotlo\Connect\Entity\Subscriber;
 
 $credentials = new Credentials();
 $credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
@@ -40,6 +40,7 @@ $request->setLanguage('en');
 
 
 $client = new Client($credentials);
+$client->payment()->setForce3ds(true);
 $client->payment()->setCard($card);
 $client->payment()->setSubscriber($subcriber);
 $client->payment()->setRequest($request);

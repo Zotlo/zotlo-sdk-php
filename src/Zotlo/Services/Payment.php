@@ -8,16 +8,16 @@
 namespace Zotlo\Connect\Services;
 
 use Zotlo\Connect\Entity\Card;
-use Zotlo\Connect\Entity\ChangePackage;
-use Zotlo\Connect\Entity\Form;
-use Zotlo\Connect\Entity\Refund;
-use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Entity\CardToken;
+use Zotlo\Connect\Entity\ChangePackage;
 use Zotlo\Connect\Entity\Credentials;
+use Zotlo\Connect\Entity\Form;
 use Zotlo\Connect\Entity\Product;
 use Zotlo\Connect\Entity\Redirect;
+use Zotlo\Connect\Entity\Refund;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Response\ChangeCardResponse;
 use Zotlo\Connect\Response\CreateFormUrlResponse;
 use Zotlo\Connect\Response\PaymentFormResponse;
@@ -77,6 +77,11 @@ class Payment extends HttpClient
      * @var Refund
      */
     private $refund = null;
+
+    /**
+     * @var bool
+     */
+    private $force3ds = false;
 
     /**
      * @var array
@@ -266,6 +271,21 @@ class Payment extends HttpClient
         $this->changePackage = $changePackage;
     }
 
+    /**
+     * @return bool
+     */
+    public function isForce3ds()
+    {
+        return $this->force3ds;
+    }
+
+    /**
+     * @param bool $force3ds
+     */
+    public function setForce3ds(bool $force3ds)
+    {
+        $this->force3ds = $force3ds;
+    }
 
     /**
      * Payment constructor.
@@ -297,6 +317,7 @@ class Payment extends HttpClient
             'subscriberLastname' => $this->getSubscriber()->getLastName(),
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
+            'force3ds' => $this->isForce3ds() ? 1 : 0,
             'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
         ];
 
@@ -407,6 +428,10 @@ class Payment extends HttpClient
         return new StatusCodeResponse($response);
     }
 
+    /**
+     * @return RefundResponse
+     * @throws PaymentException
+     */
     public function refund()
     {
         $requestData = [
@@ -441,6 +466,10 @@ class Payment extends HttpClient
 
     }
 
+    /**
+     * @return SaleResponse
+     * @throws PaymentException
+     */
     public function saveCard(): SaleResponse
     {
         $requestData = [
@@ -465,6 +494,11 @@ class Payment extends HttpClient
         $salesResponse = new SaleResponse($response);
         return $salesResponse;
     }
+
+    /**
+     * @return SaleResponse
+     * @throws PaymentException
+     */
     public function changeSubscriberPackage(): SaleResponse
     {
         $requestData = [
