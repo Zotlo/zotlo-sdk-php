@@ -21,6 +21,7 @@ $card->setCvv('001');
 
 $product = new Product();
 $product->setPackageId('zotlo.single');
+$product->setDiscountPercent(30);
 
 $subcriber = new Subscriber();
 $subcriber->setSubscriberId('test');
@@ -35,7 +36,7 @@ $subcriber->setIpAddress('192.168.1.1');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
+$request->setEndpoint('https://local-api.zotlo.com:39443/');
 $request->setLanguage('en');
 
 

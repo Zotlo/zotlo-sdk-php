@@ -14,6 +14,11 @@ class Product
     public $packageId;
 
     /**
+     * @var int
+     */
+    public $discountPercent = 0;
+
+    /**
      * @var string
      */
     public $newPackageId;
@@ -51,6 +56,22 @@ class Product
     public function setNewPackageId($newPackageId)
     {
         $this->newPackageId = $newPackageId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDiscountPercent()
+    {
+        return $this->discountPercent;
+    }
+
+    /**
+     * @param int $discountPercent
+     */
+    public function setDiscountPercent($discountPercent)
+    {
+        $this->discountPercent = $discountPercent;
     }
 
 
