@@ -303,6 +303,7 @@ class Payment extends HttpClient
     public function saleWithCard(): SaleResponse
     {
         $requestData = [
+            'platform' => $this->getRequest()->getPlatform(),
             'cardNo' => $this->getCard()->getCardNumber(),
             'cardOwner' => $this->getCard()->getcardHolderName(),
             'expireMonth' => $this->getCard()->getExpireMonth(),
@@ -335,6 +336,7 @@ class Payment extends HttpClient
     public function saleWithToken(): SaleResponse
     {
         $requestData = [
+            'platform' => $this->getRequest()->getPlatform(),
             'cardToken' => $this->getCardToken()->getToken(),
             'language' => $this->getSubscriber()->getLanguage(),
             'packageId' => $this->getProduct()->getPackageId(),
@@ -385,6 +387,7 @@ class Payment extends HttpClient
     public function sale3D(): Sale3DResponse
     {
         $requestData = [
+            'platform' => $this->getRequest()->getPlatform(),
             'cardNo' => $this->getCard()->getCardNumber(),
             'cardOwner' => $this->getCard()->getcardHolderName(),
             'expireMonth' => $this->getCard()->getExpireMonth(),
