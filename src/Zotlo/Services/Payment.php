@@ -321,6 +321,7 @@ class Payment extends HttpClient
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'force3ds' => $this->isForce3ds() ? 1 : 0,
             'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
 
         $response = $this->post('payment/credit-card', $requestData);
@@ -348,6 +349,7 @@ class Payment extends HttpClient
             'subscriberLastname' => $this->getSubscriber()->getLastName(),
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
 
         $response = $this->post('payment/credit-card', $requestData);
@@ -373,6 +375,7 @@ class Payment extends HttpClient
             'subscriberLastname' => $this->getSubscriber()->getLastName(),
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
 
         $response = $this->post('payment/create-form-url', $requestData);
@@ -405,6 +408,7 @@ class Payment extends HttpClient
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'redirectUrl' => $this->getRedirect()->getRedirectUrl(),
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
 
         $response = $this->post('payment/start-payment', $requestData);

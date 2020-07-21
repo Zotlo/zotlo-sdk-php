@@ -42,6 +42,11 @@ class Subscriber
     private $ipAddress = null;
 
     /**
+     * @var array
+     */
+    private $customParams = null;
+
+    /**
      * @return string
      */
     public function getSubscriberId()
@@ -185,5 +190,21 @@ class Subscriber
         return $this;
     }
 
+    /**
+     * @return array
+     */
+    public function getCustomParams()
+    {
+        return $this->customParams;
+    }
+
+    /**
+     * @param array $customParams
+     */
+    public function setCustomParams(?array $customParams)
+    {
+        $this->customParams = $customParams;
+        return $this;
+    }
 
 }

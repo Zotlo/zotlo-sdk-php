@@ -20,11 +20,11 @@ $card->setExpireYear('20');
 $card->setCvv('001');
 
 $product = new Product();
-$product->setPackageId('zotlo.single');
-$product->setDiscountPercent(30);
+$product->setPackageId('test');
+$product->setDiscountPercent(0);
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('test');
+$subcriber->setSubscriberId('11113');
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
 $subcriber->setCountry('TR');
@@ -32,11 +32,15 @@ $subcriber->setLanguage('TR');
 $subcriber->setFirstName('Test');
 $subcriber->setLastName('Test');
 $subcriber->setIpAddress('192.168.1.1');
+$subcriber->setCustomParams([
+    'source' => 'facebook',
+]);
+
 
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('https://local-api.zotlo.com:39443/');
+$request->setEndpoint('https:/app.zotlo.com//');
 $request->setLanguage('en');
 
 
@@ -50,6 +54,9 @@ $client->payment()->setProduct($product);
 try {
 
     $paymentResponse = $client->payment()->saleWithCard();
+
+    print_r($paymentResponse);
+    die('d');
 
     if ($paymentResponse->getResponse()->isSuccess()) {
         echo 'success';
