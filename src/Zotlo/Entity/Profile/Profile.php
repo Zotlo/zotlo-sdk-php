@@ -16,6 +16,11 @@ class Profile
     /**
      * @var string
      */
+    private $realStatus = null;
+
+    /**
+     * @var string
+     */
     private $subscriberId = null;
     /**
      * @var string
@@ -49,6 +54,22 @@ class Profile
      * @var string
      */
     private $cancellation = null;
+    /**
+     * @var string
+     */
+    private $startDate = null;
+    /**
+     * @var integer
+     */
+    private $quantity = 1;
+    /**
+     * @var integer
+     */
+    private $pendingQuantity = 0;
+    /**
+     * @var ?array
+     */
+    private $customParameters = null;
 
     /**
      * @return string
@@ -125,10 +146,52 @@ class Profile
     /**
      * @return string
      */
+    public function getStartDate()
+    {
+        return $this->startDate;
+    }
+
+    /**
+     * @return int
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
+
+
+    /**
+     * @return string
+     */
     public function getCancellation(): ?ProfileCancellation
     {
         return $this->cancellation;
     }
+
+    /**
+     * @return string
+     */
+    public function getRealStatus()
+    {
+        return $this->realStatus;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPendingQuantity()
+    {
+        return $this->pendingQuantity;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getCustomParameters()
+    {
+        return $this->customParameters;
+    }
+
 
     /**
      * Transaction constructor.
@@ -137,6 +200,7 @@ class Profile
     public function __construct($result)
     {
         $this->status = isset($result['status']) ? $result['status'] : null;
+        $this->realStatus = isset($result['realStatus']) ? $result['realStatus'] : null;
         $this->subscriberId = isset($result['subscriberId']) ? $result['subscriberId'] : null;
         $this->subscriptionType = isset($result['subscriptionType']) ? $result['subscriptionType'] : null;
         $this->startDate = isset($result['startDate']) ? $result['startDate'] : null;
@@ -146,6 +210,9 @@ class Profile
         $this->language = isset($result['language']) ? $result['language'] : null;
         $this->originalTransactionId = isset($result['originalTransactionId']) ? $result['originalTransactionId'] : null;
         $this->package = isset($result['package']) ? $result['package'] : null;
+        $this->quantity = isset($result['quantity']) ? (int)$result['quantity'] : 1;
+        $this->pendingQuantity = isset($result['pendingQuantity']) ? (int)$result['pendingQuantity'] : 0;
+        $this->customParameters = isset($result['customParameters']) ? $result['customParameters'] : null;
         $this->cancellation = isset($result['cancellation']) ? new ProfileCancellation($result['cancellation']) : null;
 
     }
