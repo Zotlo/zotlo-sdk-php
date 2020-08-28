@@ -157,9 +157,9 @@ class Payment extends HttpClient
     }
 
     /**
-     * @return CardToken
+     * @return ?CardToken
      */
-    public function getCardToken(): CardToken
+    public function getCardToken(): ?CardToken
     {
         return $this->cardToken;
     }
@@ -338,7 +338,6 @@ class Payment extends HttpClient
     {
         $requestData = [
             'platform' => $this->getRequest()->getPlatform(),
-            'cardToken' => $this->getCardToken()->getToken(),
             'language' => $this->getSubscriber()->getLanguage(),
             'packageId' => $this->getProduct()->getPackageId(),
             'discountPercent' => $this->getProduct()->getDiscountPercent(),
@@ -350,7 +349,9 @@ class Payment extends HttpClient
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'customParameters' => $this->getSubscriber()->getCustomParams(),
+            'cardToken' => $this->getCardToken()->getToken(),
         ];
+
 
         $response = $this->post('payment/credit-card', $requestData);
         $salesResponse = new SaleResponse($response);
@@ -516,15 +517,19 @@ class Payment extends HttpClient
             'cardOwner' => $this->getCard()->getcardHolderName(),
             'expireMonth' => $this->getCard()->getExpireMonth(),
             'expireYear' => $this->getCard()->getExpireYear(),
-            'cardToken' => $this->getCardToken()->getToken(),
             'cvv' => $this->getCard()->getCvv(),
             'language' => $this->getSubscriber()->getLanguage(),
+            'packageId' => $this->getSubscriber()->getPackageId(),
             'newPackageId' => $this->getChangePackage()->getNewPackageId(),
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
             'changeType' => $this->getChangePackage()->getChangeType(),
         ];
+
+        if ($this->getCardToken() != null) {
+            $requestData['cardToken'] = $this->getCardToken()->getToken();
+        }
 
         $response = $this->post('payment/change-package', $requestData);
         $salesResponse = new SaleResponse($response);

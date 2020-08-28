@@ -1,23 +1,27 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
+
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $subscriberCancellation = new \Zotlo\Connect\Entity\SubscriberCancellation();
-$subscriberCancellation->setSubscriberId('sadsfsdf');
+$subscriberCancellation->setSubscriberId('33321D3');
 $subscriberCancellation->setReason('Reason');
 $subscriberCancellation->setForce(false);
+$subscriberCancellation->setPackageId("web_zotlo_premium");
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
+$request->setSslVerify(false);
 
 
 $client = new Client($credentials);

@@ -1,22 +1,23 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
-
-$subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('testtes4t');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
+$request->setSslVerify(false);
 
+$subscriber = new \Zotlo\Connect\Entity\Subscriber();
+$subscriber->setSubscriberId('4433344');
 
 $client = new Client($credentials);
 $client->subscription()->setSubscriber($subscriber);

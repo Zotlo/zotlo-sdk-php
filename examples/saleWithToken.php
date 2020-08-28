@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
@@ -10,16 +11,22 @@ use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
+
+$request = new Request();
+$request->setPlatform('web');
+$request->setEndpoint($config->apiEndpoint);
+$request->setLanguage('en');
+$request->setSslVerify(false);
 
 $cardToken = new CardToken();
-$cardToken->setToken('YlpjcFhtQ2M0a0ljNGFhbzZZeVlSaWthQzlqRkRCaDUvVllwbVlTUHdNZC84ZVh0UjJwUkxINXp4QnYxOFNsZmExbUM5WEU9');
+$cardToken->setToken('cWdVY3pyc3lCcmJwa2ZzZGszQkl4K2lheW1JL25Rbmc3bVJLcHpvczh1bGFra2MzRXV0bUtreWlhQWpIY2c9PQ==');
 
 $product = new Product();
-$product->setPackageId('zotlo.single');
+$product->setPackageId('web_zotlo_business_monthly1');
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('test');
+$subcriber->setSubscriberId('4433344');
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
 $subcriber->setCountry('TR');
@@ -27,12 +34,6 @@ $subcriber->setLanguage('TR');
 $subcriber->setFirstName('Test');
 $subcriber->setLastName('Test');
 $subcriber->setIpAddress('192.168.1.1');
-
-$request = new Request();
-$request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
-$request->setLanguage('en');
-
 
 $client = new Client($credentials);
 $client->payment()->setCardToken($cardToken);

@@ -2,20 +2,24 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+$config = require __DIR__ . '/config.php';
+
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('testtest');
+$subscriber->setSubscriberId('subscriber-1');
+$subscriber->setPackageId('zotlo.premium');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
+$request->setSslVerify(false);
 
 
 $client = new Client($credentials);

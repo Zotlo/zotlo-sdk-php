@@ -1,16 +1,18 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
-$config = require __DIR__ . '/config.php';
 
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
-use Zotlo\Connect\Entity\Refund;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
 $credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
+
+$subscriber = new \Zotlo\Connect\Entity\Subscriber();
+$subscriber->setSubscriberId('33321D3');
 
 $request = new Request();
 $request->setPlatform('web');
@@ -18,17 +20,15 @@ $request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
 $request->setSslVerify(false);
 
-$refund = new Refund();
-$refund->setTransactionId('bb37c2b8-4723-4ccd-84e6-c679e5618a55');
-$refund->setReason('Test');
-
 $client = new Client($credentials);
-$client->payment()->setRequest($request);
-$client->payment()->setRefund($refund);
+$client->subscription()->setSubscriber($subscriber);
+$client->subscription()->setRequest($request);
 
 try {
-    $paymentResponse = $client->payment()->refund();
-    print_r($paymentResponse);
+    $response = $client->subscription()->list();
+    foreach ($response as $item) {
+        print_r($item);
+    }
 
 } catch (\Zotlo\Connect\Exception\PaymentException $exception) {
     echo $exception->getErrorCode() . PHP_EOL;

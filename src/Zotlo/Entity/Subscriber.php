@@ -47,6 +47,12 @@ class Subscriber
     private $customParams = null;
 
     /**
+     * @var string
+     */
+    private $packageId = null;
+
+
+    /**
      * @return string
      */
     public function getSubscriberId()
@@ -198,13 +204,34 @@ class Subscriber
         return $this->customParams;
     }
 
+
     /**
-     * @param array $customParams
+     * @param array|null $customParams
+     * @return $this
      */
     public function setCustomParams(?array $customParams)
     {
         $this->customParams = $customParams;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getPackageId()
+    {
+        return $this->packageId;
+    }
+
+    /**
+     * @param $packageId
+     * @return $this
+     */
+    public function setPackageId($packageId)
+    {
+        $this->packageId = $packageId;
+        return $this;
+    }
+
 
 }

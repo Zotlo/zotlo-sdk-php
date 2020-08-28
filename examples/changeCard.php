@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
@@ -10,7 +11,8 @@ use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
+
 
 $card = new Card();
 $card->setCardNumber('4111111111111111');
@@ -20,10 +22,10 @@ $card->setExpireYear('20');
 $card->setCvv('001');
 
 $product = new Product();
-$product->setPackageId('zotlo.single');
+$product->setPackageId('web_zotlo_exclusive_monthly1');
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('test');
+$subcriber->setSubscriberId('33321D3');
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
 $subcriber->setCountry('RU');
@@ -32,11 +34,12 @@ $subcriber->setFirstName('Test');
 $subcriber->setLastName('Test');
 $subcriber->setIpAddress('192.168.1.1');
 
-
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
+$request->setSslVerify(false);
+
 
 $client = new Client($credentials);
 $client->payment()->setCard($card);

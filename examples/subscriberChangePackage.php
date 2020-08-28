@@ -3,13 +3,16 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Zotlo\Connect\Client;
-use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Card;
-use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
+use Zotlo\Connect\Entity\Subscriber;
+
+$config = require __DIR__ . '/config.php';
+
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $card = new Card();
 $card->setCardNumber('4111111111111111');
@@ -19,20 +22,21 @@ $card->setExpireYear('20');
 $card->setCvv('001');
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('905389837451');
+$subcriber->setSubscriberId('905555550002');
 $subcriber->setLanguage('TR');
 $subcriber->setIpAddress('192.168.1.1');
+$subcriber->setPackageId('web_zotlo_premium_professional');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
+$request->setSslVerify(false);
 
 
 $changePackage = new \Zotlo\Connect\Entity\ChangePackage();
-$changePackage->setPackageId('upgrate');
-$changePackage->setNewPackageId('upgrate');
-$changePackage->setChangeType('upgrade');
+$changePackage->setNewPackageId('web_zotlo_exclusive_monthly1');
+$changePackage->setChangeType('downgrade');
 
 $client = new Client($credentials);
 $client->payment()->setCard($card);
@@ -63,4 +67,8 @@ try {
     echo $exception->getHttpStatus() . PHP_EOL;
     print_r($exception->getMeta());
     print_r($exception->getResult());
+}catch (\Exception $exception) {
+    echo $exception->getCode() . PHP_EOL;
+    echo $exception->getMessage() . PHP_EOL;
+    echo $exception->getTraceAsString() . PHP_EOL;
 }

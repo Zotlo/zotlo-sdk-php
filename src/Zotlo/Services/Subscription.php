@@ -8,16 +8,18 @@
 namespace Zotlo\Connect\Services;
 
 use Zotlo\Connect\Entity\Card;
-use Zotlo\Connect\Entity\SubscriberCancellation;
-use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Product;
+use Zotlo\Connect\Entity\Profile\Profile;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Entity\SubscriberCancellation;
+use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Response\ChangePackageResponse;
 use Zotlo\Connect\Response\PackageDowngradeCancelResponse;
 use Zotlo\Connect\Response\SavedCardResponse;
 use Zotlo\Connect\Response\SubscriberCancellationResponse;
+use Zotlo\Connect\Response\SubscriberListResponse;
 use Zotlo\Connect\Response\SubscriberProfileResponse;
 
 /**
@@ -175,9 +177,25 @@ class Subscription extends HttpClient
     {
         $response = $this->get('subscription/profile', [
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'packageId' => $this->getSubscriber()->getPackageId(),
         ]);
 
         return new SubscriberProfileResponse($response);
+
+    }
+
+
+    /**
+     * @throws PaymentException
+     * @return Profile[]
+     */
+    public function list()
+    {
+        $response = $this->get('subscription/list', [
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+        ]);
+
+        return (new SubscriberListResponse($response['result']))->getList();
 
     }
 
@@ -205,6 +223,7 @@ class Subscription extends HttpClient
             'subscriberId' => $this->getCancellation()->getSubscriberId(),
             'cancellationReason' => $this->getCancellation()->getReason(),
             'force' => $this->getCancellation()->isForce(),
+            'packageId' => $this->getCancellation()->getPackageId(),
         ]);
 
         return new SubscriberCancellationResponse($response);
@@ -234,7 +253,7 @@ class Subscription extends HttpClient
     {
         $response = $this->post('subscription/reactivate', [
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
-            'packageId' => $this->getProduct()->getPackageId(),
+            'packageId' => $this->getSubscriber()->getPackageId(),
         ]);
 
         return new SubscriberProfileResponse($response);
@@ -249,6 +268,7 @@ class Subscription extends HttpClient
     {
         $response = $this->post('subscription/package-downgrade-cancel', [
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'packageId' => $this->getSubscriber()->getPackageId(),
         ]);
 
         return new PackageDowngradeCancelResponse($response);

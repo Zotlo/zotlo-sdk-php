@@ -1,6 +1,8 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
+
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Card;
@@ -8,9 +10,16 @@ use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Product;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Entity\Redirect;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
+
+$request = new Request();
+$request->setPlatform('web');
+$request->setEndpoint($config->apiEndpoint);
+$request->setLanguage('en');
+$request->setSslVerify(false);
 
 $card = new Card();
 $card->setCardNumber('4111111111111111');
@@ -20,11 +29,11 @@ $card->setExpireYear('20');
 $card->setCvv('001');
 
 $product = new Product();
-$product->setPackageId('test');
+$product->setPackageId('web_zotlo_premium');
 $product->setDiscountPercent(0);
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('11113');
+$subcriber->setSubscriberId('4433344');
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
 $subcriber->setCountry('TR');
@@ -36,13 +45,8 @@ $subcriber->setCustomParams([
     'source' => 'facebook',
 ]);
 
-
-
-$request = new Request();
-$request->setPlatform('web');
-$request->setEndpoint('https:/app.zotlo.com//');
-$request->setLanguage('en');
-
+$redirect = new Redirect();
+$redirect->setRedirectUrl('https://www.example.com');
 
 $client = new Client($credentials);
 $client->payment()->setForce3ds(true);
@@ -50,13 +54,11 @@ $client->payment()->setCard($card);
 $client->payment()->setSubscriber($subcriber);
 $client->payment()->setRequest($request);
 $client->payment()->setProduct($product);
+$client->payment()->setRedirect($redirect);
 
 try {
 
     $paymentResponse = $client->payment()->saleWithCard();
-
-    print_r($paymentResponse);
-    die('d');
 
     if ($paymentResponse->getResponse()->isSuccess()) {
         echo 'success';

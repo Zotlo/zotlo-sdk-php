@@ -1,26 +1,28 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
+use Zotlo\Connect\Entity\Transaction;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
-
-$transaction = new \Zotlo\Connect\Entity\Transaction();
-$transaction->setSubscriberId('test');
-$transaction->setStartDate('');
-$transaction->setEndDate('');
-$transaction->setPackageId('');
-$transaction->setPaymentType('');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
+$request->setSslVerify(false);
 
+$transaction = new Transaction();
+$transaction->setSubscriberId('4433344');
+$transaction->setStartDate(null);
+$transaction->setEndDate(null);
+$transaction->setPackageId(null);
+$transaction->setPaymentType(null);
 
 $client = new Client($credentials);
 $client->transaction()->setTransaction($transaction);

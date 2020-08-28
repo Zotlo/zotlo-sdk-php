@@ -20,6 +20,10 @@ class SubscriberCancellation
      * @var boolean
      */
     private $force = false;
+    /**
+     * @var string
+     */
+    private $packageId = null;
 
     /**
      * @return string
@@ -74,5 +78,26 @@ class SubscriberCancellation
         $this->force = $force;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getPackageId()
+    {
+        return $this->packageId;
+    }
+
+
+    /**
+     * @param $packageId
+     * @return $this
+     */
+    public function setPackageId( $packageId)
+    {
+        $this->packageId = $packageId;
+        return $this;
+    }
+
+
 
 }

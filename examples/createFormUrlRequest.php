@@ -1,30 +1,26 @@
 <?php
-/**
- * It's very easy to manage your subscriptions with Zotlo! Create your account now on zotlo.com, add your subscription packages and enable users to subscribe to your apps using a credit card.dd
- *
- * Docs : https://docs.zotlo.com/
- */
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Form;
 use Zotlo\Connect\Entity\Product;
-use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Entity\Request;
+use Zotlo\Connect\Entity\Subscriber;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $cardToken = new Form();
-$cardToken->setFormId('zotlo-form');
+$cardToken->setFormId('payment-form');
 
 $product = new Product();
-$product->setPackageId('zotlo.single');
+$product->setPackageId('web_zotlo_business_monthly1');
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('test');
+$subcriber->setSubscriberId('33321D3');
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
 $subcriber->setCountry('TR');
@@ -34,9 +30,9 @@ $subcriber->setLastName('Test');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
-
+$request->setSslVerify(false);
 
 $client = new Client($credentials);
 $client->payment()->setForm($cardToken);

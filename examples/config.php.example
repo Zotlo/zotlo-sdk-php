@@ -1,0 +1,9 @@
+<?php
+
+$config = new \stdClass();
+$config->apiEndpoint = 'https:/api.zotlo.com/';
+$config->accessKey = '1';
+$config->accessSecurity = '1';
+$config->appId = 1;
+
+return $config;

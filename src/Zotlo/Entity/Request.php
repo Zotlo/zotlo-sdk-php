@@ -21,6 +21,10 @@ class Request
      * @var string
      */
     private $language = 'en';
+    /**
+     * @var bool
+     */
+    private $sslVerify = true;
 
     /**
      * @return string
@@ -72,6 +76,24 @@ class Request
     public function setLanguage($language)
     {
         $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSslVerify(): bool
+    {
+        return $this->sslVerify;
+    }
+
+    /**
+     * @param bool $sslVerify
+     */
+    public function setSslVerify(bool $sslVerify)
+    {
+        $this->sslVerify = $sslVerify;
+        return $this;
     }
 
 

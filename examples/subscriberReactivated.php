@@ -1,31 +1,29 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
+
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
-
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
-
+$request->setSslVerify(false);
 
 
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('3');
-
-$package = new \Zotlo\Connect\Entity\Product();
-$package->setPackageId('ZotloTest');
+$subscriber->setSubscriberId('33321D3');
+$subscriber->setPackageId('web_zotlo_exclusive_monthly1');
 
 $client = new Client($credentials);
 $client->subscription()->setSubscriber($subscriber);
-$client->subscription()->setProduct($package);
 $client->subscription()->setRequest($request);
 
 try {

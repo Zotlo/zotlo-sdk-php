@@ -32,7 +32,11 @@ abstract class HttpClient
     public function post($service, $parameters)
     {
         try {
-            $client = new Client();
+            $client = new Client(
+                [
+                    'verify' => $this->getRequest()->isSslVerify(),
+                ]
+            );
             $response = $client->request('POST', $this->getEndpoint($service), [
                 \GuzzleHttp\RequestOptions::JSON => $parameters,
                 \GuzzleHttp\RequestOptions::HEADERS => [
@@ -60,7 +64,11 @@ abstract class HttpClient
     public function get($service, $parameters)
     {
         try {
-            $client = new Client();
+            $client = new Client(
+                [
+                    'verify' => $this->getRequest()->isSslVerify(),
+                ]
+            );
             $response = $client->request('GET', $this->getEndpoint($service), [
                 \GuzzleHttp\RequestOptions::QUERY => $parameters,
                 \GuzzleHttp\RequestOptions::HEADERS => [

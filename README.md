@@ -10,16 +10,27 @@ Zotlo is owned and maintained by [Zotlo DevTeam](mailto:sdk@zotlo.com).
 ## Create New Subscriber (REST)
 
 ```php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
-use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Card;
+use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Product;
-use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Entity\Request;
+use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Entity\Redirect;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
+
+$request = new Request();
+$request->setPlatform('web');
+$request->setEndpoint($config->apiEndpoint);
+$request->setLanguage('en');
+$request->setSslVerify(false);
 
 $card = new Card();
 $card->setCardNumber('4111111111111111');
@@ -29,10 +40,11 @@ $card->setExpireYear('20');
 $card->setCvv('001');
 
 $product = new Product();
-$product->setPackageId('zotlo.single');
+$product->setPackageId('web_zotlo_premium');
+$product->setDiscountPercent(0);
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('test');
+$subcriber->setSubscriberId('4433344');
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
 $subcriber->setCountry('TR');
@@ -40,16 +52,20 @@ $subcriber->setLanguage('TR');
 $subcriber->setFirstName('Test');
 $subcriber->setLastName('Test');
 $subcriber->setIpAddress('192.168.1.1');
+$subcriber->setCustomParams([
+    'source' => 'facebook',
+]);
 
-$request = new Request();
-$request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
+$redirect = new Redirect();
+$redirect->setRedirectUrl('https://www.example.com');
 
 $client = new Client($credentials);
+$client->payment()->setForce3ds(true);
 $client->payment()->setCard($card);
 $client->payment()->setSubscriber($subcriber);
 $client->payment()->setRequest($request);
 $client->payment()->setProduct($product);
+$client->payment()->setRedirect($redirect);
 
 try {
 
@@ -61,7 +77,12 @@ try {
         echo 'fail';
     }
 
-    print_r($paymentResponse->getResponse());
+    if ($paymentResponse->getPaymentStatus() == 'REDIRECT') {
+        header('Location:' . $paymentResponse->getRedirect());
+    } else {
+        print_r($paymentResponse);
+        echo 'complete';
+    }
 
 } catch (\Zotlo\Connect\Exception\PaymentException $exception) {
     echo $exception->getErrorCode() . PHP_EOL;
@@ -72,89 +93,33 @@ try {
 }
 
 ```
-
-
-## Start New Payment (3DS)
-
-```php
-
-use Zotlo\Connect\Client;
-use Zotlo\Connect\Entity\Credentials;
-use Zotlo\Connect\Entity\Card;
-use Zotlo\Connect\Entity\Product;
-use Zotlo\Connect\Entity\Subscriber;
-use Zotlo\Connect\Entity\Request;
-use Zotlo\Connect\Entity\Redirect;
-
-$credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
-
-$card = new Card();
-$card->setCardNumber('4111111111111111');
-$card->setcardHolderName("Test Test");
-$card->setExpireMonth('12');
-$card->setExpireYear('20');
-$card->setCvv('001');
-
-$product = new Product();
-$product->setPackageId('zotlo.single');
-
-$subcriber = new Subscriber();
-$subcriber->setSubscriberId('test');
-$subcriber->setEmail('test@zotlo.com');
-$subcriber->setPhoneNumber('+905555555555');
-$subcriber->setCountry('TR');
-$subcriber->setLanguage('TR');
-$subcriber->setFirstName('Test');
-$subcriber->setLastName('Test');
-$subcriber->setIpAddress('192.168.1.1');
-
-$request = new Request();
-$request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
-
-$redirect = new Redirect();
-$redirect->setRedirectUrl('https://example.com/callback');
-
-$client = new Client($credentials);
-$client->payment()->setCard($card);
-$client->payment()->setSubscriber($subcriber);
-$client->payment()->setRequest($request);
-$client->payment()->setProduct($product);
-$client->payment()->setRedirect($redirect);
-
-try {
-    $paymentResponse = $client->payment()->sale3D();
-    #Redirect Zotlo
-    header('Location: ' . $paymentResponse->getRedirect()->getUrl());
-
-} catch (\Zotlo\Connect\Exception\PaymentException $exception) {
-    echo $exception->getErrorCode() . PHP_EOL;
-    echo $exception->getErrorMessage() . PHP_EOL;
-    echo $exception->getHttpStatus() . PHP_EOL;
-    print_r($exception->getMeta());
-    print_r($exception->getResult());
-}
-```
-
 
 ### Subscriber Profile
 
 ```php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('subscriber-id');
+$subscriber->setSubscriberId('subscriber-1');
+$subscriber->setPackageId('zotlo.premium');
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('https://api.zotlo.com/');
+$request->setEndpoint($config->apiEndpoint);
+$request->setLanguage('en');
+$request->setSslVerify(false);
+
 
 $client = new Client($credentials);
 $client->subscription()->setSubscriber($subscriber);
@@ -169,6 +134,53 @@ try {
     echo $exception->getErrorMessage() . PHP_EOL;
     echo $exception->getHttpStatus() . PHP_EOL;
     print_r($exception->getMeta());
+    print_r($exception->getResult());
+    print_r($exception->getResult());
+}
+
+```
+
+### Subscription List
+
+```php
+<?php
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$config = require __DIR__ . '/config.php';
+
+use Zotlo\Connect\Client;
+use Zotlo\Connect\Entity\Credentials;
+use Zotlo\Connect\Entity\Request;
+
+$credentials = new Credentials();
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
+
+$subscriber = new \Zotlo\Connect\Entity\Subscriber();
+$subscriber->setSubscriberId('33321D3');
+
+$request = new Request();
+$request->setPlatform('web');
+$request->setEndpoint($config->apiEndpoint);
+$request->setLanguage('en');
+$request->setSslVerify(false);
+
+$client = new Client($credentials);
+$client->subscription()->setSubscriber($subscriber);
+$client->subscription()->setRequest($request);
+
+try {
+    $response = $client->subscription()->list();
+    foreach ($response as $item) {
+        print_r($item);
+    }
+
+} catch (\Zotlo\Connect\Exception\PaymentException $exception) {
+    echo $exception->getErrorCode() . PHP_EOL;
+    echo $exception->getErrorMessage() . PHP_EOL;
+    echo $exception->getHttpStatus() . PHP_EOL;
+    print_r($exception->getMeta());
+    print_r($exception->getResult());
     print_r($exception->getResult());
 }
 ```

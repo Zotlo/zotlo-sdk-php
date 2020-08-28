@@ -1,28 +1,24 @@
 <?php
-/**
- * It's very easy to manage your subscriptions with Zotlo! Create your account now on zotlo.com, add your subscription packages and enable users to subscribe to your apps using a credit card.dd
- *
- * Docs : https://docs.zotlo.com/
- */
 
 require_once __DIR__ . '/../vendor/autoload.php';
+$config = require __DIR__ . '/config.php';
 
 use Zotlo\Connect\Client;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Request;
 
 $credentials = new Credentials();
-$credentials->setAccessKey("1")->setAccessSecurity("1")->setApplicationId('2');
-
+$credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $request = new Request();
 $request->setPlatform('web');
-$request->setEndpoint('http://api.zotlo.localhost/');
+$request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
-
+$request->setSslVerify(false);
 
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('9053898374531');
+$subscriber->setSubscriberId('905555550002');
+$subscriber->setPackageId('web_zotlo_premium_professional');
 
 $client = new Client($credentials);
 $client->subscription()->setSubscriber($subscriber);
