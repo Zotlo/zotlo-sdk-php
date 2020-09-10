@@ -151,12 +151,15 @@ class Subscription extends HttpClient
         return $this->cancellation;
     }
 
+
     /**
      * @param SubscriberCancellation $cancellation
+     * @return $this
      */
     public function setCancellation(SubscriberCancellation $cancellation)
     {
         $this->cancellation = $cancellation;
+        return $this;
     }
 
 

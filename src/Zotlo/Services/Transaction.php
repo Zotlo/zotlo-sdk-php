@@ -43,12 +43,15 @@ class Transaction extends HttpClient
         return $this->transaction;
     }
 
+
     /**
      * @param TransactionEntity $transaction
+     * @return $this
      */
     public function setTransaction(TransactionEntity $transaction)
     {
         $this->transaction = $transaction;
+        return $this;
     }
 
     /**
@@ -59,12 +62,15 @@ class Transaction extends HttpClient
         return $this->credentials;
     }
 
+
     /**
      * @param Credentials $credentials
+     * @return $this
      */
     public function setCredentials(Credentials $credentials)
     {
         $this->credentials = $credentials;
+        return $this;
     }
 
     /**
@@ -77,10 +83,12 @@ class Transaction extends HttpClient
 
     /**
      * @param Request $request
+     * @return $this
      */
     public function setRequest(Request $request)
     {
         $this->request = $request;
+        return $this;
     }
 
 

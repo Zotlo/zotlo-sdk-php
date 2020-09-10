@@ -217,10 +217,12 @@ class Payment extends HttpClient
 
     /**
      * @param Form $form
+     * @return $this
      */
     public function setForm(Form $form)
     {
         $this->form = $form;
+        return $this;
     }
 
     /**
@@ -231,12 +233,15 @@ class Payment extends HttpClient
         return $this->requestData;
     }
 
+
     /**
-     * @param array $requestData
+     * @param $requestData
+     * @return $this
      */
     public function setRequestData($requestData)
     {
         $this->requestData = $requestData;
+        return $this;
     }
 
     /**
@@ -247,12 +252,15 @@ class Payment extends HttpClient
         return $this->refund;
     }
 
+
     /**
      * @param Refund $refund
+     * @return $this
      */
     public function setRefund(Refund $refund)
     {
         $this->refund = $refund;
+        return $this;
     }
 
     /**
@@ -263,12 +271,15 @@ class Payment extends HttpClient
         return $this->changePackage;
     }
 
+
     /**
      * @param ChangePackage $changePackage
+     * @return $this
      */
     public function setChangePackage(ChangePackage $changePackage)
     {
         $this->changePackage = $changePackage;
+        return $this;
     }
 
     /**
@@ -279,12 +290,15 @@ class Payment extends HttpClient
         return $this->force3ds;
     }
 
+
     /**
      * @param bool $force3ds
+     * @return $this
      */
     public function setForce3ds(bool $force3ds)
     {
         $this->force3ds = $force3ds;
+        return $this;
     }
 
     /**
