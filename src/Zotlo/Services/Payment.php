@@ -550,4 +550,26 @@ class Payment extends HttpClient
         return $salesResponse;
     }
 
+
+    /**
+     * @return CreateFormUrlResponse
+     * @throws PaymentException
+     */
+    public function changeSubscriberPackageFormRequest(): CreateFormUrlResponse
+    {
+        $requestData = [
+            'formId' => $this->getForm()->getFormId(),
+            'language' => $this->getSubscriber()->getLanguage(),
+            'packageId' => $this->getSubscriber()->getPackageId(),
+            'newPackageId' => $this->getChangePackage()->getNewPackageId(),
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'changeType' => $this->getChangePackage()->getChangeType(),
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
+        ];
+
+        $response = $this->post('payment/change-package-request', $requestData);
+        $salesResponse = new CreateFormUrlResponse($response);
+        return $salesResponse;
+    }
+
 }
