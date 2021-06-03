@@ -180,25 +180,19 @@ class Subscription extends HttpClient
      */
     public function profile(): SubscriberProfileResponse
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            $packageId = trim($this->getSubscriber()->getPackageId());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        $packageId = trim($this->getSubscriber()->getPackageId());
 
-            if (empty($subscriberId) || empty($packageId)) {
-                throw new \InvalidArgumentException('subscriberId or packageId is invalid');
-            }
-
-            $response = $this->get('subscription/profile', [
-                'subscriberId' => $subscriberId,
-                'packageId' => $packageId,
-            ]);
-
-            return new SubscriberProfileResponse($response);
-
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        if (empty($subscriberId) || empty($packageId)) {
+            throw new \InvalidArgumentException('subscriberId or packageId is invalid');
         }
 
+        $response = $this->get('subscription/profile', [
+            'subscriberId' => $subscriberId,
+            'packageId' => $packageId,
+        ]);
+
+        return new SubscriberProfileResponse($response);
     }
 
 
@@ -208,22 +202,16 @@ class Subscription extends HttpClient
      */
     public function list()
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            if (empty($subscriberId)) {
-                throw new \InvalidArgumentException('subscriberId is invalid');
-            }
-
-            $response = $this->get('subscription/list', [
-                'subscriberId' => $subscriberId,
-            ]);
-
-            return (new SubscriberListResponse($response['result']))->getList();
-
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        if (empty($subscriberId)) {
+            throw new \InvalidArgumentException('subscriberId is invalid');
         }
 
+        $response = $this->get('subscription/list', [
+            'subscriberId' => $subscriberId,
+        ]);
+
+        return (new SubscriberListResponse($response['result']))->getList();
     }
 
     /**
@@ -232,22 +220,16 @@ class Subscription extends HttpClient
      */
     public function getCardList(): SavedCardResponse
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            if (empty($subscriberId)) {
-                throw new \InvalidArgumentException('subscriberId is invalid');
-            }
-
-            $response = $this->get('subscription/card-list', [
-                'subscriberId' => $this->getSubscriber()->getSubscriberId(),
-            ]);
-
-            return new SavedCardResponse($response);
-            
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        if (empty($subscriberId)) {
+            throw new \InvalidArgumentException('subscriberId is invalid');
         }
 
+        $response = $this->get('subscription/card-list', [
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+        ]);
+
+        return new SavedCardResponse($response);
     }
 
     /**
@@ -256,25 +238,21 @@ class Subscription extends HttpClient
      */
     public function cancellation(): SubscriberCancellationResponse
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            $packageId = trim($this->getSubscriber()->getPackageId());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        $packageId = trim($this->getSubscriber()->getPackageId());
 
-            if (empty($subscriberId) || empty($packageId)) {
-                throw new \InvalidArgumentException('subscriberId or packageId  is invalid');
-            }
-
-            $response = $this->post('subscription/cancellation', [
-                'subscriberId' => $subscriberId,
-                'cancellationReason' => $this->getCancellation()->getReason(),
-                'force' => $this->getCancellation()->isForce(),
-                'packageId' => $packageId,
-            ]);
-
-            return new SubscriberCancellationResponse($response);
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        if (empty($subscriberId) || empty($packageId)) {
+            throw new \InvalidArgumentException('subscriberId or packageId  is invalid');
         }
+
+        $response = $this->post('subscription/cancellation', [
+            'subscriberId' => $subscriberId,
+            'cancellationReason' => $this->getCancellation()->getReason(),
+            'force' => $this->getCancellation()->isForce(),
+            'packageId' => $packageId,
+        ]);
+
+        return new SubscriberCancellationResponse($response);
 
     }
 
@@ -284,23 +262,19 @@ class Subscription extends HttpClient
      */
     public function changePackage(): ChangePackageResponse
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            $packageId = trim($this->getSubscriber()->getPackageId());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        $packageId = trim($this->getSubscriber()->getPackageId());
 
-            if (empty($subscriberId) || empty($packageId)) {
-                throw new \InvalidArgumentException('subscriberId or packageId is invalid');
-            }
-
-            $response = $this->post('subscription/change-package', [
-                'subscriberId' => $subscriberId,
-                'packageId' => $packageId,
-            ]);
-
-            return new ChangePackageResponse($response);
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        if (empty($subscriberId) || empty($packageId)) {
+            throw new \InvalidArgumentException('subscriberId or packageId is invalid');
         }
+
+        $response = $this->post('subscription/change-package', [
+            'subscriberId' => $subscriberId,
+            'packageId' => $packageId,
+        ]);
+
+        return new ChangePackageResponse($response);
 
     }
 
@@ -310,24 +284,19 @@ class Subscription extends HttpClient
      */
     public function reactivated(): SubscriberProfileResponse
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            $packageId = trim($this->getSubscriber()->getPackageId());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        $packageId = trim($this->getSubscriber()->getPackageId());
 
-            if (empty($subscriberId) || empty($packageId)) {
-                throw new \InvalidArgumentException('subscriberId or packageId is invalid');
-            }
-
-            $response = $this->post('subscription/reactivate', [
-                'subscriberId' => $subscriberId,
-                'packageId' => $packageId,
-            ]);
-
-            return new SubscriberProfileResponse($response);
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        if (empty($subscriberId) || empty($packageId)) {
+            throw new \InvalidArgumentException('subscriberId or packageId is invalid');
         }
 
+        $response = $this->post('subscription/reactivate', [
+            'subscriberId' => $subscriberId,
+            'packageId' => $packageId,
+        ]);
+
+        return new SubscriberProfileResponse($response);
     }
 
     /**
@@ -336,25 +305,19 @@ class Subscription extends HttpClient
      */
     public function packageDowngradeCancel(): PackageDowngradeCancelResponse
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            $packageId = trim($this->getSubscriber()->getPackageId());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        $packageId = trim($this->getSubscriber()->getPackageId());
 
-            if (empty($subscriberId) || empty($packageId)) {
-                throw new \InvalidArgumentException('subscriberId or packageId is invalid');
-            }
-
-            $response = $this->post('subscription/package-downgrade-cancel', [
-                'subscriberId' => $subscriberId,
-                'packageId' => $packageId,
-            ]);
-
-            return new PackageDowngradeCancelResponse($response);
-
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        if (empty($subscriberId) || empty($packageId)) {
+            throw new \InvalidArgumentException('subscriberId or packageId is invalid');
         }
 
+        $response = $this->post('subscription/package-downgrade-cancel', [
+            'subscriberId' => $subscriberId,
+            'packageId' => $packageId,
+        ]);
+
+        return new PackageDowngradeCancelResponse($response);
     }
 
     /**
@@ -363,23 +326,19 @@ class Subscription extends HttpClient
      */
     public function getPurchaseList()
     {
-        try {
-            $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-            $token = trim($this->getSubscriber()->getToken());
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+        $token = trim($this->getSubscriber()->getToken());
 
-            if (empty($subscriberId) || empty($token)) {
-                throw new \InvalidArgumentException('subscriberId or token is invalid');
-            }
-
-            $response = $this->get('purchase/list', [
-                'subscriberId' => $subscriberId,
-                'token' => $token,
-            ]);
-
-            return (new PurchaseListResponse($response['result']))->getList();
-        } catch (\InvalidArgumentException $exception) {
-            die($exception->getMessage());
+        if (empty($subscriberId) || empty($token)) {
+            throw new \InvalidArgumentException('subscriberId or token is invalid');
         }
+
+        $response = $this->get('purchase/list', [
+            'subscriberId' => $subscriberId,
+            'token' => $token,
+        ]);
+
+        return (new PurchaseListResponse($response['result']))->getList();
 
     }
 
