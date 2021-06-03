@@ -51,6 +51,10 @@ class Subscriber
      */
     private $packageId = null;
 
+    /**
+     * @var null
+     */
+    private $token = null;
 
     /**
      * @return string
@@ -233,5 +237,19 @@ class Subscriber
         return $this;
     }
 
+    /**
+     * @return null
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
 
+    /**
+     * @param null $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
 }

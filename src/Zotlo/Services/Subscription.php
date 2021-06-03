@@ -17,6 +17,7 @@ use Zotlo\Connect\Entity\SubscriberCancellation;
 use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Response\ChangePackageResponse;
 use Zotlo\Connect\Response\PackageDowngradeCancelResponse;
+use Zotlo\Connect\Response\PurchaseListResponse;
 use Zotlo\Connect\Response\SavedCardResponse;
 use Zotlo\Connect\Response\SubscriberCancellationResponse;
 use Zotlo\Connect\Response\SubscriberListResponse;
@@ -275,6 +276,21 @@ class Subscription extends HttpClient
         ]);
 
         return new PackageDowngradeCancelResponse($response);
+
+    }
+
+    /**
+     * @throws PaymentException
+     * @return Profile[]
+     */
+    public function getPurchaseList()
+    {
+        $response = $this->get('purchase/list', [
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'token' => $this->getSubscriber()->getToken()
+        ]);
+
+        return (new PurchaseListResponse($response['result']))->getList();
 
     }
 
