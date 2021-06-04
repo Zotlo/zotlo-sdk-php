@@ -238,8 +238,8 @@ class Subscription extends HttpClient
      */
     public function cancellation(): SubscriberCancellationResponse
     {
-        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
-        $packageId = trim($this->getSubscriber()->getPackageId());
+        $subscriberId = trim($this->getCancellation()->getSubscriberId());
+        $packageId = trim($this->getCancellation()->getPackageId());
 
         if (empty($subscriberId) || empty($packageId)) {
             throw new \InvalidArgumentException('subscriberId or packageId  is invalid');
