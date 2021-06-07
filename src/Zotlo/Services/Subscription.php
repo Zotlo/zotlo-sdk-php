@@ -7,7 +7,6 @@
 
 namespace Zotlo\Connect\Services;
 
-use http\Exception\InvalidArgumentException;
 use Zotlo\Connect\Entity\Card;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Product;
@@ -197,8 +196,8 @@ class Subscription extends HttpClient
 
 
     /**
-     * @throws PaymentException
      * @return Profile[]
+     * @throws PaymentException
      */
     public function list()
     {
@@ -321,8 +320,8 @@ class Subscription extends HttpClient
     }
 
     /**
-     * @throws PaymentException
      * @return Profile[]
+     * @throws PaymentException
      */
     public function getPurchaseList()
     {
