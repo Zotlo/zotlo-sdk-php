@@ -15,7 +15,7 @@ class Constants
     /**
      *
      */
-    const API_ENDPOINT_PREPROD = 'https://api-zotlo.mobylonia.com/';
+    const API_ENDPOINT_PREPROD = 'https://test-api.zotlo.com/';
     /**
      *
      */
