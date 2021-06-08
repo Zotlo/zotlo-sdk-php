@@ -202,6 +202,7 @@ class Subscription extends HttpClient
     public function list()
     {
         $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+
         if (empty($subscriberId)) {
             throw new \InvalidArgumentException('subscriberId is invalid');
         }
@@ -220,12 +221,13 @@ class Subscription extends HttpClient
     public function getCardList(): SavedCardResponse
     {
         $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+
         if (empty($subscriberId)) {
             throw new \InvalidArgumentException('subscriberId is invalid');
         }
 
         $response = $this->get('subscription/card-list', [
-            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'subscriberId' => $subscriberId,
         ]);
 
         return new SavedCardResponse($response);
