@@ -327,15 +327,13 @@ class Subscription extends HttpClient
      */
     public function getPurchaseList()
     {
-        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
         $token = trim($this->getSubscriber()->getToken());
 
-        if (empty($subscriberId) || empty($token)) {
-            throw new \InvalidArgumentException('subscriberId or token is invalid');
+        if (empty($token) || !preg_match('#[A-z0-9]{86}#', $token)) {
+            throw new \InvalidArgumentException('token is invalid');
         }
 
         $response = $this->get('purchase/list', [
-            'subscriberId' => $subscriberId,
             'token' => $token,
         ]);
 

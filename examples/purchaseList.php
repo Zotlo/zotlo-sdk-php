@@ -12,7 +12,6 @@ $credentials = new Credentials();
 $credentials->setAccessKey($config->accessKey)->setAccessSecurity($config->accessSecurity)->setApplicationId($config->appId);
 
 $subscriber = new \Zotlo\Connect\Entity\Subscriber();
-$subscriber->setSubscriberId('33321D3');
 $subscriber->setToken('token');
 
 $request = new Request();
