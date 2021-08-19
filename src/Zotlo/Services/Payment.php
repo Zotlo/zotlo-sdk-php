@@ -462,6 +462,7 @@ class Payment extends HttpClient
         $requestData = [
             'transactionId' => $this->getRefund()->getTransactionId(),
             'refundReason' => $this->getRefund()->getReason(),
+            'refundUser' => $this->getRefund()->getUser(),
         ];
 
         $response = $this->post('payment/refund', $requestData);

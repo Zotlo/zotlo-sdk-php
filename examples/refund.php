@@ -21,6 +21,7 @@ $request->setSslVerify(false);
 $refund = new Refund();
 $refund->setTransactionId('bb37c2b8-4723-4ccd-84e6-c679e5618a55');
 $refund->setReason('Test');
+$refund->setUser('User1');
 
 $client = new Client($credentials);
 $client->payment()->setRequest($request);

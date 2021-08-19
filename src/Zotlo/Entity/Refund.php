@@ -19,6 +19,11 @@ class Refund
     public $reason;
 
     /**
+     * @var string
+     */
+    public $user;
+
+    /**
      * @return string
      */
     public function getTransactionId()
@@ -51,6 +56,24 @@ class Refund
     public function setReason($reason)
     {
         $this->reason = $reason;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param string $user
+     * @return Refund
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
         return $this;
     }
 
