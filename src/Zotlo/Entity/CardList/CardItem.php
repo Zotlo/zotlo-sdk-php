@@ -52,6 +52,16 @@ class CardItem
         return $this->cardExpire;
     }
 
+    /**
+     * @return bool
+     */
+    public function isDeletable()
+    {
+        return $this->deletable;
+    }
+
+
+
     public function __construct($result)
     {
         $this->token = isset($result['token']) ? $result['token'] : null;
