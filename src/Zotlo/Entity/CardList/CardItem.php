@@ -24,6 +24,11 @@ class CardItem
     private $cardExpire;
 
     /**
+     * @var boolean
+     */
+    private $deletable;
+
+    /**
      * @return string
      */
     public function getToken()
@@ -52,6 +57,7 @@ class CardItem
         $this->token = isset($result['token']) ? $result['token'] : null;
         $this->cardNumber = isset($result['cardNumber']) ? $result['cardNumber'] : null;
         $this->cardExpire = isset($result['cardExpire']) ? $result['cardExpire'] : null;
+        $this->deletable = isset($result['deletable']) ? $result['deletable'] : true;
     }
 
 }
