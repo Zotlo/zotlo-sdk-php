@@ -17,6 +17,11 @@ class Subscriber
      */
     private $country = null;
     /**
+     * /**
+     * @var string
+     */
+    private $packageCountry = null;
+    /**
      * @var string
      */
     private $phoneNumber = null;
@@ -90,6 +95,22 @@ class Subscriber
     {
         $this->country = $country;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPackageCountry()
+    {
+        return $this->packageCountry;
+    }
+
+    /**
+     * @param string $packageCountry
+     */
+    public function setPackageCountry($packageCountry)
+    {
+        $this->packageCountry = $packageCountry;
     }
 
     /**
