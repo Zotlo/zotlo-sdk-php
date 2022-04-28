@@ -19,5 +19,8 @@ class Constants
     /**
      *
      */
-    const API_ACTIVE_VERSION = 'v1';
+    const API_ACTIVE_VERSION = [
+        'v1' => 'v1',
+        'v2' => 'v2',
+    ];
 }

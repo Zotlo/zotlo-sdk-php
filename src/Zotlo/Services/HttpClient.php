@@ -20,7 +20,7 @@ abstract class HttpClient
      */
     public function getEndpoint($service)
     {
-        return trim($this->getRequest()->getEndpoint(), '/') . '/' . Constants::API_ACTIVE_VERSION . '/' . $service;
+        return trim($this->getRequest()->getEndpoint(), '/') . '/' . $this->getRequest()->getApiVersion() . '/' . $service;
     }
 
     /**
