@@ -20,7 +20,7 @@ abstract class HttpClient
      */
     public function getEndpoint($service)
     {
-        return trim($this->getRequest()->getEndpoint(), '/') . '/' . Constants::API_ACTIVE_VERSION . '/' . $service;
+        return trim($this->getRequest()->getEndpoint(), '/') . '/' . $this->getRequest()->getApiVersion() . '/' . $service;
     }
 
     /**
@@ -47,10 +47,10 @@ abstract class HttpClient
                 ],
             ]);
 
-            return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+            return json_decode($response->getBody()->getContents(), true);
 
         } catch (RequestException $exception) {
-            $response = \GuzzleHttp\json_decode($exception->getResponse()->getBody()->getContents(), true);
+            $response = json_decode($exception->getResponse()->getBody()->getContents(), true);
             throw new PaymentException($response);
         }
     }
@@ -79,10 +79,10 @@ abstract class HttpClient
                 ],
             ]);
 
-            return \GuzzleHttp\json_decode($response->getBody()->getContents(), true);
+            return json_decode($response->getBody()->getContents(), true);
 
         } catch (RequestException $exception) {
-            $response = \GuzzleHttp\json_decode($exception->getResponse()->getBody()->getContents(), true);
+            $response = json_decode($exception->getResponse()->getBody()->getContents(), true);
             throw new PaymentException($response);
         }
     }

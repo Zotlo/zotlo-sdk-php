@@ -25,11 +25,11 @@ $card = new Card();
 $card->setCardNumber('4111111111111111');
 $card->setcardHolderName("Test Test");
 $card->setExpireMonth('12');
-$card->setExpireYear('20');
-$card->setCvv('001');
+$card->setExpireYear('22');
+$card->setCvv('000');
 
 $product = new Product();
-$product->setPackageId('web_zotlo_premium');
+$product->setPackageId('web_premium');
 $product->setDiscountPercent(0);
 
 $subcriber = new Subscriber();
@@ -49,7 +49,7 @@ $redirect = new Redirect();
 $redirect->setRedirectUrl('https://www.example.com');
 
 $client = new Client($credentials);
-$client->payment()->setForce3ds(true);
+$client->payment()->setForce3ds(false);
 $client->payment()->setCard($card);
 $client->payment()->setSubscriber($subcriber);
 $client->payment()->setRequest($request);

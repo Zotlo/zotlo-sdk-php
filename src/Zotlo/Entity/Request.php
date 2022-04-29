@@ -27,6 +27,11 @@ class Request
     private $sslVerify = true;
 
     /**
+     * @var string
+     */
+    private $apiVersion = 'v1';
+
+    /**
      * @return string
      */
     public function getPlatform()
@@ -93,6 +98,24 @@ class Request
     public function setSslVerify(bool $sslVerify)
     {
         $this->sslVerify = $sslVerify;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiVersion()
+    {
+        return $this->apiVersion;
+    }
+
+    /**
+     * @param string $apiVersion
+     * @return $this
+     */
+    public function setApiVersion($apiVersion)
+    {
+        $this->apiVersion = $apiVersion;
         return $this;
     }
 
