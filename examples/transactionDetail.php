@@ -33,5 +33,4 @@ try {
     echo $exception->getHttpStatus() . PHP_EOL;
     print_r($exception->getMeta());
     print_r($exception->getResult());
-    print_r($exception->getResult());
 }
