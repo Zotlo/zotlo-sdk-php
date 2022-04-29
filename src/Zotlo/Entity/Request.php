@@ -29,7 +29,7 @@ class Request
     /**
      * @var string
      */
-    private $apiVersion = 'v1';
+    private $apiVersion = Constants::API_ACTIVE_VERSION_V1;
 
     /**
      * @return string
