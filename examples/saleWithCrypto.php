@@ -18,14 +18,14 @@ $credentials
     ->setApplicationId($config->appId);
 
 $product = new Product();
-$product->setPackageId('web_zotlo_premium');
+$product->setPackageId('web_premium');
 
 $subcriber = new Subscriber();
 $subcriber->setSubscriberId('33321D3');
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
-$subcriber->setCountry('TR');
-$subcriber->setLanguage('TR');
+$subcriber->setCountry('US');
+$subcriber->setLanguage('US');
 $subcriber->setFirstName('Test');
 $subcriber->setLastName('Test');
 
@@ -34,7 +34,7 @@ $request->setPlatform('web');
 $request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
 $request->setSslVerify(false);
-$request->setApiVersion(Constants::API_ACTIVE_VERSION['v2']);
+$request->setApiVersion(Constants::API_ACTIVE_VERSION_V2);
 
 $redirect = new Redirect();
 $redirect->setRedirectUrl('https://www.example.com');

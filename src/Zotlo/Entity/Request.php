@@ -104,7 +104,7 @@ class Request
     /**
      * @return string
      */
-    public function getApiVersion(): string
+    public function getApiVersion()
     {
         return $this->apiVersion;
     }
@@ -113,7 +113,7 @@ class Request
      * @param string $apiVersion
      * @return $this
      */
-    public function setApiVersion(string $apiVersion)
+    public function setApiVersion($apiVersion)
     {
         $this->apiVersion = $apiVersion;
         return $this;
