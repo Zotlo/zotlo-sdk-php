@@ -27,6 +27,11 @@ class Request
     private $sslVerify = true;
 
     /**
+     * @var int
+     */
+    private $providerId = 0;
+
+    /**
      * @var string
      */
     private $apiVersion = Constants::API_ACTIVE_VERSION_V1;
@@ -116,6 +121,24 @@ class Request
     public function setApiVersion($apiVersion)
     {
         $this->apiVersion = $apiVersion;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getProviderId()
+    {
+        return $this->providerId;
+    }
+
+    /**
+     * @param int $providerId
+     * @return $this
+     */
+    public function setProviderId($providerId): Request
+    {
+        $this->providerId = $providerId;
         return $this;
     }
 
