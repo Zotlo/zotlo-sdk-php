@@ -22,6 +22,7 @@ use Zotlo\Connect\Response\ChangeCardResponse;
 use Zotlo\Connect\Response\CreateFormUrlResponse;
 use Zotlo\Connect\Response\CryptoPaymentResponse;
 use Zotlo\Connect\Response\PaymentFormResponse;
+use Zotlo\Connect\Response\PaypalPaymentResponse;
 use Zotlo\Connect\Response\RefundResponse;
 use Zotlo\Connect\Response\Sale3DResponse;
 use Zotlo\Connect\Response\SaleResponse;
@@ -397,6 +398,30 @@ class Payment extends HttpClient
 
         $response = $this->post('payment/crypto', $requestData);
         return new CryptoPaymentResponse($response);
+    }
+
+    /**
+     * @return \Zotlo\Connect\Response\PaypalPaymentResponse
+     * @throws \Zotlo\Connect\Exception\PaymentException
+     */
+    public function saleWithPaypal(): PaypalPaymentResponse
+    {
+        $requestData = [
+            'platform' => $this->getRequest()->getPlatform(),
+            'language' => $this->getSubscriber()->getLanguage(),
+            'packageId' => $this->getProduct()->getPackageId(),
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'subscriberCountry' => $this->getSubscriber()->getCountry(),
+            'subscriberPhoneNumber' => $this->getSubscriber()->getPhoneNumber(),
+            'subscriberFirstname' => $this->getSubscriber()->getFirstName(),
+            'subscriberLastname' => $this->getSubscriber()->getLastName(),
+            'subscriberEmail' => $this->getSubscriber()->getEmail(),
+            'redirectUrl' => $this->getRedirect()->getRedirectUrl(),
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
+        ];
+
+        $response = $this->post('payment/paypal', $requestData);
+        return new PaypalPaymentResponse($response);
     }
 
     /**
