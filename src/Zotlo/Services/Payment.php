@@ -18,6 +18,7 @@ use Zotlo\Connect\Entity\Refund;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Exception\PaymentException;
+use Zotlo\Connect\Response\AlternativePaymentResponse;
 use Zotlo\Connect\Response\ChangeCardResponse;
 use Zotlo\Connect\Response\CreateFormUrlResponse;
 use Zotlo\Connect\Response\CryptoPaymentResponse;
@@ -464,7 +465,6 @@ class Payment extends HttpClient
             'expireYear' => $this->getCard()->getExpireYear(),
             'cvv' => $this->getCard()->getCvv(),
             'language' => $this->getSubscriber()->getLanguage(),
-            'platform' => $this->getRequest()->getPlatform(),
             'packageId' => $this->getProduct()->getPackageId(),
             'discountPercent' => $this->getProduct()->getDiscountPercent(),
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
@@ -621,8 +621,34 @@ class Payment extends HttpClient
         ];
 
         $response = $this->post('payment/change-package-request', $requestData);
-        $salesResponse = new CreateFormUrlResponse($response);
-        return $salesResponse;
+        return new CreateFormUrlResponse($response);
+    }
+
+
+    /**
+     * @return AlternativePaymentResponse
+     * @throws PaymentException
+     */
+    public function startAlternativePayment(): AlternativePaymentResponse
+    {
+        $requestData = [
+            'platform' => $this->getRequest()->getPlatform(),
+            'providerId' => $this->getRequest()->getProviderId(),
+            'language' => $this->getSubscriber()->getLanguage(),
+            'packageId' => $this->getProduct()->getPackageId(),
+            'quantity' => 1,
+            'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'subscriberCountry' => $this->getSubscriber()->getCountry(),
+            'subscriberPhoneNumber' => $this->getSubscriber()->getPhoneNumber(),
+            'subscriberFirstname' => $this->getSubscriber()->getFirstName(),
+            'subscriberLastname' => $this->getSubscriber()->getLastName(),
+            'subscriberEmail' => $this->getSubscriber()->getEmail(),
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
+            'returnUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
+        ];
+
+        $response = $this->post('payment/alternative-provider', $requestData);
+        return new AlternativePaymentResponse($response);
     }
 
 }

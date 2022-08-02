@@ -45,6 +45,11 @@ class SaleResponse
     private $redirect = null;
 
     /**
+     * @var string
+     */
+    private $paymentHash = null;
+
+    /**
      * @return array
      */
     public function getCard()
@@ -188,6 +193,22 @@ class SaleResponse
         $this->customer = $customer;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getPaymentHash()
+    {
+        return $this->paymentHash;
+    }
+
+    /**
+     * @param string|null $paymentHash
+     */
+    public function setPaymentHash($paymentHash)
+    {
+        $this->paymentHash = $paymentHash;
+    }
+
 
     public function __construct($response)
     {
@@ -199,6 +220,7 @@ class SaleResponse
         $this->setCustomer(isset($response['result']['customer']) ? $response['result']['customer'] : null);
         $this->setPaymentStatus(isset($response['result']['paymentStatus']) ? $response['result']['paymentStatus'] : null);
         $this->setRedirect(isset($response['result']['redirect']) ? $response['result']['redirect'] : null);
+        $this->setPaymentHash($response['result']['paymentHash'] ?? null);
         $this->setResponse(new Transaction($response['result']['response']));
     }
 }
