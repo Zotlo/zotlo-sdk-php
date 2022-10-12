@@ -17,6 +17,7 @@ use Zotlo\Connect\Entity\Redirect;
 use Zotlo\Connect\Entity\Refund;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Entity\PreCheckAlternativePayment;
 use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Response\AlternativePaymentResponse;
 use Zotlo\Connect\Response\ChangeCardResponse;
@@ -24,6 +25,7 @@ use Zotlo\Connect\Response\CreateFormUrlResponse;
 use Zotlo\Connect\Response\CryptoPaymentResponse;
 use Zotlo\Connect\Response\PaymentFormResponse;
 use Zotlo\Connect\Response\PaypalPaymentResponse;
+use Zotlo\Connect\Response\PreCheckAlternativePaymentResponse;
 use Zotlo\Connect\Response\RefundResponse;
 use Zotlo\Connect\Response\Sale3DResponse;
 use Zotlo\Connect\Response\SaleResponse;
@@ -52,6 +54,10 @@ class Payment extends HttpClient
      * @var ChangePackage
      */
     private $changePackage = null;
+    /**
+     * @var PreCheckAlternativePayment
+     */
+    private $preCheckAlternativePaymentEntity = null;
 
     /**
      * @var Card
@@ -303,6 +309,24 @@ class Payment extends HttpClient
         $this->force3ds = $force3ds;
         return $this;
     }
+
+    /**
+     * @return PreCheckAlternativePayment|null
+     */
+    public function getPreCheckAlternativePaymentEntity(): PreCheckAlternativePayment
+    {
+        return $this->preCheckAlternativePaymentEntity;
+    }
+
+    /**
+     * @param PreCheckAlternativePayment|null $preCheckAlternativePaymentEntity
+     */
+    public function setPreCheckAlternativePaymentEntity(PreCheckAlternativePayment $preCheckAlternativePaymentEntity)
+    {
+        $this->preCheckAlternativePaymentEntity = $preCheckAlternativePaymentEntity;
+    }
+
+
 
     /**
      * Payment constructor.
@@ -649,6 +673,23 @@ class Payment extends HttpClient
 
         $response = $this->post('payment/alternative-provider', $requestData);
         return new AlternativePaymentResponse($response);
+    }
+
+
+    /**
+     * @return PreCheckAlternativePaymentResponse
+     * @throws PaymentException
+     */
+    public function preCheckAlternativePayment(): PreCheckAlternativePaymentResponse
+    {
+        $requestData = [
+            'subscriberPhoneNumber' => $this->getPreCheckAlternativePaymentEntity()->getSubscriberPhoneNumber(),
+            'packageId' => $this->getPreCheckAlternativePaymentEntity()->getPackageId(),
+            'providerId' => $this->getPreCheckAlternativePaymentEntity()->getProviderId(),
+        ];
+
+        $response = $this->post('payment/pre-check-alternative-provider', $requestData);
+        return new PreCheckAlternativePaymentResponse($response);
     }
 
 }
