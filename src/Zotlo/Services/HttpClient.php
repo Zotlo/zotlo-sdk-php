@@ -51,6 +51,18 @@ abstract class HttpClient
 
         } catch (RequestException $exception) {
             $response = json_decode($exception->getResponse()->getBody()->getContents(), true);
+
+            if(is_null($response)) {
+                $response = [
+                    'meta' => [
+                        'httpStatus' => 400,
+                        'errorCode' => "4000055",
+                        'errorMessage' => 'Something went wrong.'
+                    ],
+                    'result' => []
+                ];
+            }
+
             throw new PaymentException($response);
         }
     }
@@ -83,6 +95,18 @@ abstract class HttpClient
 
         } catch (RequestException $exception) {
             $response = json_decode($exception->getResponse()->getBody()->getContents(), true);
+
+            if(is_null($response)) {
+                $response = [
+                    'meta' => [
+                        'httpStatus' => 400,
+                        'errorCode' => "4000055",
+                        'errorMessage' => 'Something went wrong.'
+                    ],
+                    'result' => []
+                ];
+            }
+
             throw new PaymentException($response);
         }
     }
