@@ -115,7 +115,20 @@ class PaymentException extends \Exception
      */
     public function __construct($response)
     {
-        $this->setMeta($response['meta']);
+
+        if (!is_array($response)) {
+            $response = [
+                'meta' => [
+                    'requestId' => uniqid(),
+                    'httpStatus' => 400,
+                    'errorCode' => 400000,
+                    'errorMessage' => 'Transaction failed. Please try again.'
+                ],
+                'result' => []
+            ];
+        }
+
+        $this->setMeta(is_array($response) ? $response['meta'] : null);
         $this->setHttpStatus($response['meta']['httpStatus']);
         $this->setErrorCode($response['meta']['errorCode']);
         $this->setErrorMessage($response['meta']['errorMessage']);
