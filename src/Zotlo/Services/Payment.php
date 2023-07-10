@@ -393,6 +393,8 @@ class Payment extends HttpClient
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'customParameters' => $this->getSubscriber()->getCustomParams(),
             'cardToken' => $this->getCardToken()->getToken(),
+            'cvvCheck' => $this->getCardToken()->isCvvCheck(),
+            'cvv' => $this->getCardToken()->getCvv(),
         ];
 
 
