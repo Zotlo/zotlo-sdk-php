@@ -44,33 +44,37 @@ class CardToken
     /**
      * @return string|null
      */
-    public function getCvv(): ?string
+    public function getCvv()
     {
         return $this->cvv;
     }
 
     /**
      * @param string|null $cvv
+     * @return $this
      */
-    public function setCvv(?string $cvv): void
+    public function setCvv($cvv)
     {
         $this->cvv = $cvv;
+        return $this;
     }
 
     /**
      * @return bool
      */
-    public function isCvvCheck(): bool
+    public function isCvvCheck()
     {
         return $this->cvvCheck;
     }
 
     /**
      * @param bool $cvvCheck
+     * @return $this
      */
-    public function setCvvCheck(bool $cvvCheck): void
+    public function setCvvCheck($cvvCheck)
     {
         $this->cvvCheck = $cvvCheck;
+        return $this;
     }
 
 }
