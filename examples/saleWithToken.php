@@ -21,6 +21,8 @@ $request->setSslVerify(false);
 
 $cardToken = new CardToken();
 $cardToken->setToken('cWdVY3pyc3lCcmJwa2ZzZGszQkl4K2lheW1JL25Rbmc3bVJLcHpvczh1bGFra2MzRXV0bUtreWlhQWpIY2c9PQ==');
+$cardToken->setCvvCheck(false); // Default False
+$cardToken->setCvv(null); // Required When Cvv Check True
 
 $product = new Product();
 $product->setPackageId('web_zotlo_business_monthly1');

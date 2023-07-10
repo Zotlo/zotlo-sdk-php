@@ -14,6 +14,16 @@ class CardToken
     private $token = null;
 
     /**
+     * @var string|null
+     */
+    private $cvv = null;
+
+    /**
+     * @var bool
+     */
+    private $cvvCheck = false;
+
+    /**
      * @return string
      */
     public function getToken()
@@ -28,6 +38,42 @@ class CardToken
     public function setToken($token)
     {
         $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCvv()
+    {
+        return $this->cvv;
+    }
+
+    /**
+     * @param string|null $cvv
+     * @return $this
+     */
+    public function setCvv($cvv)
+    {
+        $this->cvv = $cvv;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCvvCheck()
+    {
+        return $this->cvvCheck;
+    }
+
+    /**
+     * @param bool $cvvCheck
+     * @return $this
+     */
+    public function setCvvCheck($cvvCheck)
+    {
+        $this->cvvCheck = $cvvCheck;
         return $this;
     }
 
