@@ -24,6 +24,16 @@ class Product
     public $newPackageId;
 
     /**
+     * @var float
+     */
+    public $defaultPrice;
+
+    /**
+     * @var string
+     */
+    public $defaultCurrency;
+
+    /**
      * @return string
      */
     public function getPackageId()
@@ -72,6 +82,38 @@ class Product
     public function setDiscountPercent($discountPercent)
     {
         $this->discountPercent = $discountPercent;
+    }
+
+    /**
+     * @return float
+     */
+    public function getDefaultPrice()
+    {
+        return $this->defaultPrice;
+    }
+
+    /**
+     * @param float $defaultPrice
+     */
+    public function setDefaultPrice($defaultPrice)
+    {
+        $this->defaultPrice = $defaultPrice;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultCurrency()
+    {
+        return $this->defaultCurrency;
+    }
+
+    /**
+     * @param string $defaultCurrency
+     */
+    public function setDefaultCurrency($defaultCurrency)
+    {
+        $this->defaultCurrency = $defaultCurrency;
     }
 
 

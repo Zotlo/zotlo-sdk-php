@@ -10,7 +10,7 @@
   "require": {
     "php": ">=7.1.0",
     "ext-curl": "*",
-    "guzzlehttp/guzzle": "^6.0.0|^7.4.3"
+    "guzzlehttp/guzzle": "^6.0.0|^7.4.5"
   },
   "autoload": {
     "psr-4": {

@@ -17,6 +17,7 @@ use Zotlo\Connect\Entity\Redirect;
 use Zotlo\Connect\Entity\Refund;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
+use Zotlo\Connect\Entity\PreCheckAlternativePayment;
 use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Response\AlternativePaymentResponse;
 use Zotlo\Connect\Response\ChangeCardResponse;
@@ -24,6 +25,7 @@ use Zotlo\Connect\Response\CreateFormUrlResponse;
 use Zotlo\Connect\Response\CryptoPaymentResponse;
 use Zotlo\Connect\Response\PaymentFormResponse;
 use Zotlo\Connect\Response\PaypalPaymentResponse;
+use Zotlo\Connect\Response\PreCheckAlternativePaymentResponse;
 use Zotlo\Connect\Response\RefundResponse;
 use Zotlo\Connect\Response\Sale3DResponse;
 use Zotlo\Connect\Response\SaleResponse;
@@ -52,6 +54,10 @@ class Payment extends HttpClient
      * @var ChangePackage
      */
     private $changePackage = null;
+    /**
+     * @var PreCheckAlternativePayment
+     */
+    private $preCheckAlternativePaymentEntity = null;
 
     /**
      * @var Card
@@ -305,6 +311,24 @@ class Payment extends HttpClient
     }
 
     /**
+     * @return PreCheckAlternativePayment|null
+     */
+    public function getPreCheckAlternativePaymentEntity(): PreCheckAlternativePayment
+    {
+        return $this->preCheckAlternativePaymentEntity;
+    }
+
+    /**
+     * @param PreCheckAlternativePayment|null $preCheckAlternativePaymentEntity
+     */
+    public function setPreCheckAlternativePaymentEntity(PreCheckAlternativePayment $preCheckAlternativePaymentEntity)
+    {
+        $this->preCheckAlternativePaymentEntity = $preCheckAlternativePaymentEntity;
+    }
+
+
+
+    /**
      * Payment constructor.
      * @param Credentials $credentials
      */
@@ -328,6 +352,8 @@ class Payment extends HttpClient
             'cvv' => $this->getCard()->getCvv(),
             'language' => $this->getSubscriber()->getLanguage(),
             'packageId' => $this->getProduct()->getPackageId(),
+            'price' => $this->getProduct()->getDefaultPrice(),
+            'currency' => $this->getProduct()->getDefaultCurrency(),
             'discountPercent' => $this->getProduct()->getDiscountPercent(),
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
             'subscriberCountry' => $this->getSubscriber()->getCountry(),
@@ -369,6 +395,8 @@ class Payment extends HttpClient
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'customParameters' => $this->getSubscriber()->getCustomParams(),
             'cardToken' => $this->getCardToken()->getToken(),
+            'cvvCheck' => $this->getCardToken()->isCvvCheck(),
+            'cvv' => $this->getCardToken()->getCvv(),
         ];
 
 
@@ -649,6 +677,23 @@ class Payment extends HttpClient
 
         $response = $this->post('payment/alternative-provider', $requestData);
         return new AlternativePaymentResponse($response);
+    }
+
+
+    /**
+     * @return PreCheckAlternativePaymentResponse
+     * @throws PaymentException
+     */
+    public function preCheckAlternativePayment(): PreCheckAlternativePaymentResponse
+    {
+        $requestData = [
+            'subscriberPhoneNumber' => $this->getPreCheckAlternativePaymentEntity()->getSubscriberPhoneNumber(),
+            'packageId' => $this->getPreCheckAlternativePaymentEntity()->getPackageId(),
+            'providerId' => $this->getPreCheckAlternativePaymentEntity()->getProviderId(),
+        ];
+
+        $response = $this->post('payment/pre-check-alternative-provider', $requestData);
+        return new PreCheckAlternativePaymentResponse($response);
     }
 
 }
