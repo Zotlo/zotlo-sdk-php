@@ -352,6 +352,8 @@ class Payment extends HttpClient
             'cvv' => $this->getCard()->getCvv(),
             'language' => $this->getSubscriber()->getLanguage(),
             'packageId' => $this->getProduct()->getPackageId(),
+            'price' => $this->getProduct()->getDefaultPrice(),
+            'currency' => $this->getProduct()->getDefaultCurrency(),
             'discountPercent' => $this->getProduct()->getDiscountPercent(),
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
             'subscriberCountry' => $this->getSubscriber()->getCountry(),

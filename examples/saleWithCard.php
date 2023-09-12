@@ -31,6 +31,8 @@ $card->setCvv('000');
 $product = new Product();
 $product->setPackageId('web_premium');
 $product->setDiscountPercent(0);
+$product->setDefaultPrice('500.00');
+$product->setDefaultCurrency('RUB');
 
 $subcriber = new Subscriber();
 $subcriber->setSubscriberId('4433344');
