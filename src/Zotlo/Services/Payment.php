@@ -386,6 +386,8 @@ class Payment extends HttpClient
             'packageId' => $this->getProduct()->getPackageId(),
             'discountPercent' => $this->getProduct()->getDiscountPercent(),
             'subscriberId' => $this->getSubscriber()->getSubscriberId(),
+            'price' => $this->getProduct()->getDefaultPrice(),
+            'currency' => $this->getProduct()->getDefaultCurrency(),
             'subscriberCountry' => $this->getSubscriber()->getCountry(),
             'packageCountry' => $this->getSubscriber()->getPackageCountry(),
             'subscriberPhoneNumber' => $this->getSubscriber()->getPhoneNumber(),
