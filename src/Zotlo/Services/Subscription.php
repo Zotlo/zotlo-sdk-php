@@ -8,6 +8,7 @@
 namespace Zotlo\Connect\Services;
 
 use Zotlo\Connect\Entity\Card;
+use Zotlo\Connect\Entity\CardToken;
 use Zotlo\Connect\Entity\Credentials;
 use Zotlo\Connect\Entity\Product;
 use Zotlo\Connect\Entity\Profile\Profile;
@@ -18,6 +19,7 @@ use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Response\ChangePackageResponse;
 use Zotlo\Connect\Response\PackageDowngradeCancelResponse;
 use Zotlo\Connect\Response\PurchaseListResponse;
+use Zotlo\Connect\Response\RemoveCardResponse;
 use Zotlo\Connect\Response\SavedCardResponse;
 use Zotlo\Connect\Response\SubscriberCancellationResponse;
 use Zotlo\Connect\Response\SubscriberListResponse;
@@ -231,6 +233,31 @@ class Subscription extends HttpClient
         ]);
 
         return new SavedCardResponse($response);
+    }
+
+    /**
+     * @param CardToken $cardToken
+     * @return RemoveCardResponse
+     * @throws PaymentException
+     */
+    public function removeCard(CardToken $cardToken): RemoveCardResponse
+    {
+        $subscriberId = trim($this->getSubscriber()->getSubscriberId());
+
+        if (empty($subscriberId)) {
+            throw new \InvalidArgumentException('subscriberId is invalid');
+        }
+
+        if (empty($cardToken->getToken())){
+            throw new \InvalidArgumentException('cardToken is invalid');
+        }
+
+        $response = $this->post('subscription/delete-card', [
+            'subscriberId' => $subscriberId,
+            'creditCardToken' => $cardToken->getToken()
+        ]);
+
+        return new RemoveCardResponse($response);
     }
 
     /**
