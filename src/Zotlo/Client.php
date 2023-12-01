@@ -8,6 +8,7 @@
 namespace Zotlo\Connect;
 
 use Zotlo\Connect\Entity\Credentials;
+use Zotlo\Connect\Services\Information;
 use Zotlo\Connect\Services\Payment;
 use Zotlo\Connect\Services\Subscription;
 use Zotlo\Connect\Services\Transaction;
@@ -32,6 +33,11 @@ class Client
      */
     public $subscription;
 
+    /**
+     * @var Information
+     */
+    public $information;
+
 
     /**
      * Client constructor.
@@ -42,6 +48,7 @@ class Client
         $this->payment = new Payment($credentials);
         $this->transaction = new Transaction($credentials);
         $this->subscription = new Subscription($credentials);
+        $this->information = new Information($credentials);
     }
 
     /**
