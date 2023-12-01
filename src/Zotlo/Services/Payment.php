@@ -596,6 +596,7 @@ class Payment extends HttpClient
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
+            'force3ds' => $this->isForce3ds()
         ];
 
         $response = $this->post('payment/save-card', $requestData);
