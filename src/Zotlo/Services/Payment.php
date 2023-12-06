@@ -93,6 +93,11 @@ class Payment extends HttpClient
     private $force3ds = false;
 
     /**
+     * @var bool
+     */
+    private $useWallet = false;
+
+    /**
      * @var array
      */
     private $requestData = [];
@@ -311,6 +316,24 @@ class Payment extends HttpClient
     }
 
     /**
+     * @return bool
+     */
+    public function isUseWallet()
+    {
+        return $this->useWallet;
+    }
+
+    /**
+     * @param bool $useWallet
+     * @return void
+     */
+    public function setUseWallet(bool $useWallet)
+    {
+        $this->useWallet = $useWallet;
+    }
+
+
+    /**
      * @return PreCheckAlternativePayment|null
      */
     public function getPreCheckAlternativePaymentEntity(): PreCheckAlternativePayment
@@ -325,7 +348,6 @@ class Payment extends HttpClient
     {
         $this->preCheckAlternativePaymentEntity = $preCheckAlternativePaymentEntity;
     }
-
 
 
     /**
@@ -364,6 +386,7 @@ class Payment extends HttpClient
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'force3ds' => $this->isForce3ds() ? 1 : 0,
+            'useWallet' => $this->isUseWallet() ? 1 : 0,
             'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
             'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
@@ -397,6 +420,8 @@ class Payment extends HttpClient
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'customParameters' => $this->getSubscriber()->getCustomParams(),
             'cardToken' => $this->getCardToken()->getToken(),
+            'force3ds' => $this->isForce3ds() ? 1 : 0,
+            'useWallet' => $this->isUseWallet() ? 1 : 0,
             'cvvCheck' => $this->getCardToken()->isCvvCheck(),
             'cvv' => $this->getCardToken()->getCvv(),
         ];
@@ -596,7 +621,7 @@ class Payment extends HttpClient
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
             'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
-            'force3ds' => $this->isForce3ds()
+            'force3ds' => $this->isForce3ds() ? 1 : 0,
         ];
 
         $response = $this->post('payment/save-card', $requestData);

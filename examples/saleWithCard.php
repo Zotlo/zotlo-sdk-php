@@ -32,10 +32,10 @@ $product = new Product();
 $product->setPackageId('web_premium');
 $product->setDiscountPercent(0);
 $product->setDefaultPrice('500.00');
-$product->setDefaultCurrency('RUB');
+$product->setDefaultCurrency('TRY');
 
 $subcriber = new Subscriber();
-$subcriber->setSubscriberId('4433344');
+$subcriber->setSubscriberId("wallet-5");
 $subcriber->setEmail('test@zotlo.com');
 $subcriber->setPhoneNumber('+905555555555');
 $subcriber->setCountry('TR');
@@ -52,6 +52,7 @@ $redirect->setRedirectUrl('https://www.example.com');
 
 $client = new Client($credentials);
 $client->payment()->setForce3ds(false);
+$client->payment()->setUseWallet(false);
 $client->payment()->setCard($card);
 $client->payment()->setSubscriber($subcriber);
 $client->payment()->setRequest($request);
