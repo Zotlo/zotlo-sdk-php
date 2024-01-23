@@ -421,6 +421,7 @@ class Payment extends HttpClient
             'customParameters' => $this->getSubscriber()->getCustomParams(),
             'cardToken' => $this->getCardToken()->getToken(),
             'force3ds' => $this->isForce3ds() ? 1 : 0,
+            'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
             'useWallet' => $this->isUseWallet() ? 1 : 0,
             'cvvCheck' => $this->getCardToken()->isCvvCheck(),
             'cvv' => $this->getCardToken()->getCvv(),
