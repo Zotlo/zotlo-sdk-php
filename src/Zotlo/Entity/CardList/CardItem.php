@@ -11,6 +11,11 @@ class CardItem
 {
 
     /**
+     * @var int
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $token;
@@ -22,6 +27,11 @@ class CardItem
      * @var string
      */
     private $cardExpire;
+
+    /**
+     * @var string
+     */
+    private $createDate;
 
     /**
      * @var boolean
@@ -60,14 +70,33 @@ class CardItem
         return $this->deletable;
     }
 
+    /**
+     * @return mixed|string|null
+     */
+    public function getCreateDate()
+    {
+        return $this->createDate;
+    }
+
+
+
+    /**
+     * @return int|mixed|null
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 
     public function __construct($result)
     {
-        $this->token = isset($result['token']) ? $result['token'] : null;
-        $this->cardNumber = isset($result['cardNumber']) ? $result['cardNumber'] : null;
-        $this->cardExpire = isset($result['cardExpire']) ? $result['cardExpire'] : null;
-        $this->deletable = isset($result['deletable']) ? $result['deletable'] : true;
+        $this->id = isset($result['id']) ? (int)$result['id'] : 0;
+        $this->token = $result['token'] ?? null;
+        $this->cardNumber = $result['cardNumber'] ?? null;
+        $this->cardExpire = $result['cardExpire'] ?? null;
+        $this->createDate = $result['createDate'] ?? null;
+        $this->deletable = $result['deletable'] ?? true;
     }
 
 }
