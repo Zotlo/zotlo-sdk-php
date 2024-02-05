@@ -35,6 +35,7 @@ $request->setEndpoint($config->apiEndpoint);
 $request->setLanguage('en');
 $request->setSslVerify(false);
 $request->setApiVersion(Constants::API_ACTIVE_VERSION_V2);
+$request->setProviderId(11);
 
 $redirect = new Redirect();
 $redirect->setRedirectUrl('https://www.example.com');

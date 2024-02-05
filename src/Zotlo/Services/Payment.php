@@ -472,6 +472,7 @@ class Payment extends HttpClient
             'subscriberPhoneNumber' => $this->getSubscriber()->getPhoneNumber(),
             'subscriberFirstname' => $this->getSubscriber()->getFirstName(),
             'subscriberLastname' => $this->getSubscriber()->getLastName(),
+            'providerId' => $this->getRequest()->getProviderId(),
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'redirectUrl' => $this->getRedirect()->getRedirectUrl(),
             'customParameters' => $this->getSubscriber()->getCustomParams(),
