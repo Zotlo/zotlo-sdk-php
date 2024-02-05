@@ -26,6 +26,11 @@ class CreateFormUrlResponse
     private $expireDate = null;
 
     /**
+     * @var string
+     */
+    private $transactionId = null;
+
+    /**
      * @return string
      */
     public function getFormUrl()
@@ -73,6 +78,16 @@ class CreateFormUrlResponse
         $this->meta = $meta;
     }
 
+    public function getTransactionId()
+    {
+        return $this->transactionId;
+    }
+
+    public function setTransactionId(?string $transactionId)
+    {
+        $this->transactionId = $transactionId;
+    }
+
 
     /**
      * CreateFormUrlResponse constructor.
@@ -83,5 +98,6 @@ class CreateFormUrlResponse
         $this->setMeta($response['meta']);
         $this->setFormUrl($response['result']['form']['formUrl']);
         $this->setExpireDate($response['result']['form']['expireDate']);
+        $this->setTransactionId($response['result']['form']['transactionId'] ?? null);
     }
 }
