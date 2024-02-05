@@ -83,7 +83,7 @@ class CreateFormUrlResponse
         return $this->transactionId;
     }
 
-    public function setTransactionId(?string $transactionId)
+    public function setTransactionId($transactionId)
     {
         $this->transactionId = $transactionId;
     }
