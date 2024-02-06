@@ -19,6 +19,8 @@ $credentials
 
 $product = new Product();
 $product->setPackageId('web_premium');
+$product->setDefaultPrice(20);
+$product->setDefaultCurrency('USD');
 
 $subcriber = new Subscriber();
 $subcriber->setSubscriberId('33321D3');
