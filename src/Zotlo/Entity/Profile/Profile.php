@@ -53,6 +53,10 @@ class Profile
     /**
      * @var string
      */
+    private $lastTransactionId = null;
+    /**
+     * @var string
+     */
     private $cancellation = null;
     /**
      * @var string
@@ -192,6 +196,11 @@ class Profile
         return $this->customParameters;
     }
 
+    public function getLastTransactionId()
+    {
+        return $this->lastTransactionId;
+    }
+
 
     /**
      * Transaction constructor.
@@ -199,20 +208,21 @@ class Profile
      */
     public function __construct($result)
     {
-        $this->status = isset($result['status']) ? $result['status'] : null;
-        $this->realStatus = isset($result['realStatus']) ? $result['realStatus'] : null;
-        $this->subscriberId = isset($result['subscriberId']) ? $result['subscriberId'] : null;
-        $this->subscriptionType = isset($result['subscriptionType']) ? $result['subscriptionType'] : null;
-        $this->startDate = isset($result['startDate']) ? $result['startDate'] : null;
-        $this->expireDate = isset($result['expireDate']) ? $result['expireDate'] : null;
-        $this->country = isset($result['country']) ? $result['country'] : null;
-        $this->phoneNumber = isset($result['phoneNumber']) ? $result['phoneNumber'] : null;
-        $this->language = isset($result['language']) ? $result['language'] : null;
-        $this->originalTransactionId = isset($result['originalTransactionId']) ? $result['originalTransactionId'] : null;
-        $this->package = isset($result['package']) ? $result['package'] : null;
+        $this->status = $result['status'] ?? null;
+        $this->realStatus = $result['realStatus'] ?? null;
+        $this->subscriberId = $result['subscriberId'] ?? null;
+        $this->subscriptionType = $result['subscriptionType'] ?? null;
+        $this->startDate = $result['startDate'] ?? null;
+        $this->expireDate = $result['expireDate'] ?? null;
+        $this->country = $result['country'] ?? null;
+        $this->phoneNumber = $result['phoneNumber'] ?? null;
+        $this->language = $result['language'] ?? null;
+        $this->originalTransactionId = $result['originalTransactionId'] ?? null;
+        $this->lastTransactionId = $result['lastTransactionId'] ?? null;
+        $this->package = $result['package'] ?? null;
         $this->quantity = isset($result['quantity']) ? (int)$result['quantity'] : 1;
         $this->pendingQuantity = isset($result['pendingQuantity']) ? (int)$result['pendingQuantity'] : 0;
-        $this->customParameters = isset($result['customParameters']) ? $result['customParameters'] : null;
+        $this->customParameters = $result['customParameters'] ?? null;
         $this->cancellation = isset($result['cancellation']) ? new ProfileCancellation($result['cancellation']) : null;
 
     }
