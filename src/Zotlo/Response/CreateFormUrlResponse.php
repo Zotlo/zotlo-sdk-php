@@ -31,6 +31,11 @@ class CreateFormUrlResponse
     private $transactionId = null;
 
     /**
+     * @var string
+     */
+    private $paymentStatus = 'REDIRECT';
+
+    /**
      * @return string
      */
     public function getFormUrl()
@@ -78,14 +83,37 @@ class CreateFormUrlResponse
         $this->meta = $meta;
     }
 
+    /**
+     * @return string|null
+     */
     public function getTransactionId()
     {
         return $this->transactionId;
     }
 
+    /**
+     * @param $transactionId
+     * @return void
+     */
     public function setTransactionId($transactionId)
     {
         $this->transactionId = $transactionId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPaymentStatus()
+    {
+        return $this->paymentStatus;
+    }
+
+    /**
+     * @param mixed|string $paymentStatus
+     */
+    public function setPaymentStatus($paymentStatus)
+    {
+        $this->paymentStatus = $paymentStatus;
     }
 
 
@@ -99,5 +127,6 @@ class CreateFormUrlResponse
         $this->setFormUrl($response['result']['form']['formUrl']);
         $this->setExpireDate($response['result']['form']['expireDate']);
         $this->setTransactionId($response['result']['form']['transactionId'] ?? null);
+        $this->setPaymentStatus($response['result']['form']['paymentStatus'] ?? 'REDIRECT');
     }
 }
