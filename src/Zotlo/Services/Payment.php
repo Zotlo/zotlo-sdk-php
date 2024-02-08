@@ -477,7 +477,7 @@ class Payment extends HttpClient
             'redirectUrl' => $this->getRedirect()->getRedirectUrl(),
             'price' => $this->getProduct()->getDefaultPrice(),
             'currency' => $this->getProduct()->getDefaultCurrency(),
-            'iseWallet' => $this->isUseWallet() ? true : false,
+            'useWallet' => $this->isUseWallet() ? true : false,
             'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
 
