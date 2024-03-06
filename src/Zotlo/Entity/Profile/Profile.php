@@ -74,6 +74,10 @@ class Profile
      * @var ?array
      */
     private $customParameters = null;
+    /**
+     * @var integer
+     */
+    private $renewalFetchCount = 0;
 
     /**
      * @return string
@@ -201,6 +205,22 @@ class Profile
         return $this->lastTransactionId;
     }
 
+    /**
+     * @return int
+     */
+    public function getRenewalFetchCount(): int
+    {
+        return $this->renewalFetchCount;
+    }
+
+    /**
+     * @param int $renewalFetchCount
+     */
+    public function setRenewalFetchCount(int $renewalFetchCount): void
+    {
+        $this->renewalFetchCount = $renewalFetchCount;
+    }
+
 
     /**
      * Transaction constructor.
@@ -224,7 +244,7 @@ class Profile
         $this->pendingQuantity = isset($result['pendingQuantity']) ? (int)$result['pendingQuantity'] : 0;
         $this->customParameters = $result['customParameters'] ?? null;
         $this->cancellation = isset($result['cancellation']) ? new ProfileCancellation($result['cancellation']) : null;
-
+        $this->renewalFetchCount = isset($result['renewalFetchCount']) ? $result['renewalFetchCount'] : 0;
     }
 
 }
