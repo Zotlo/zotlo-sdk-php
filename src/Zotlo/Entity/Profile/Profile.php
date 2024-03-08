@@ -208,7 +208,7 @@ class Profile
     /**
      * @return int
      */
-    public function getRenewalFetchCount(): int
+    public function getRenewalFetchCount()
     {
         return $this->renewalFetchCount;
     }
@@ -216,7 +216,7 @@ class Profile
     /**
      * @param int $renewalFetchCount
      */
-    public function setRenewalFetchCount(int $renewalFetchCount): void
+    public function setRenewalFetchCount($renewalFetchCount)
     {
         $this->renewalFetchCount = $renewalFetchCount;
     }
@@ -244,7 +244,7 @@ class Profile
         $this->pendingQuantity = isset($result['pendingQuantity']) ? (int)$result['pendingQuantity'] : 0;
         $this->customParameters = $result['customParameters'] ?? null;
         $this->cancellation = isset($result['cancellation']) ? new ProfileCancellation($result['cancellation']) : null;
-        $this->renewalFetchCount = isset($result['renewalFetchCount']) ? $result['renewalFetchCount'] : 0;
+        $this->renewalFetchCount = isset($result['renewalFetchCount']) ? (int)$result['renewalFetchCount'] : 0;
     }
 
 }
