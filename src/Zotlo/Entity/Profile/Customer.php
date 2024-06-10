@@ -93,6 +93,7 @@ class Customer
         $this->firstname = isset($result['firstname']) ? $result['firstname'] : null;
         $this->lastname = isset($result['lastname']) ? $result['lastname'] : null;
         $this->email = isset($result['email']) ? $result['email'] : null;
+        $this->country = isset($result['country']) ? $result['country'] : null;
     }
 
 }
