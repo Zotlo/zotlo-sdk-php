@@ -45,6 +45,7 @@ $redirect->setRedirectUrl('https://www.example.com');
 $client = new Client($credentials);
 $client->payment()->setSubscriber($subcriber);
 $client->payment()->setUseWallet(false);
+$client->payment()->setAddWallet(false);
 $client->payment()->setRequest($request);
 $client->payment()->setProduct($product);
 $client->payment()->setRedirect($redirect);

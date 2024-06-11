@@ -98,6 +98,11 @@ class Payment extends HttpClient
     private $useWallet = false;
 
     /**
+     * @var bool
+     */
+    private $addWallet = false;
+
+    /**
      * @var array
      */
     private $requestData = [];
@@ -349,6 +354,22 @@ class Payment extends HttpClient
         $this->preCheckAlternativePaymentEntity = $preCheckAlternativePaymentEntity;
     }
 
+    /**
+     * @return bool
+     */
+    public function isAddWallet()
+    {
+        return $this->addWallet;
+    }
+
+    /**
+     * @param bool $addWallet
+     */
+    public function setAddWallet($addWallet)
+    {
+        $this->addWallet = $addWallet;
+    }
+
 
     /**
      * Payment constructor.
@@ -478,6 +499,7 @@ class Payment extends HttpClient
             'price' => $this->getProduct()->getDefaultPrice(),
             'currency' => $this->getProduct()->getDefaultCurrency(),
             'useWallet' => $this->isUseWallet() ? true : false,
+            'addWallet' => $this->isAddWallet() ? 1 : 0,
             'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
 
