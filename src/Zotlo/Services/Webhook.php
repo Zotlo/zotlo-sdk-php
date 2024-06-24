@@ -12,12 +12,12 @@ class Webhook
     /**
      * @var array|null
      */
-    private ?array $data;
+    private $data;
 
     /**
      * @return array|null
      */
-    public function getData(): ?array
+    public function getData()
     {
         return $this->data;
     }
@@ -25,7 +25,7 @@ class Webhook
     /**
      * @param array|null $data
      */
-    public function setData(?array $data): void
+    public function setData($data)
     {
         $this->data = $data;
     }

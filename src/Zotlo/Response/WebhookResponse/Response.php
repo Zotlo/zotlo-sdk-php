@@ -4,19 +4,19 @@ namespace Zotlo\Connect\Response\WebhookResponse;
 
 class Response
 {
-    protected ?string $type;
+    protected $type;
 
-    protected ?string $eventType;
+    protected $eventType;
 
-    protected ?string $createDate;
+    protected $createDate;
 
-    protected ?string $createDateTimeZoneType;
+    protected $createDateTimeZoneType;
 
-    protected ?string $createDateTimeZone;
+    protected $createDateTimeZone;
 
-    protected ?string $requestID;
+    protected $requestID;
 
-    protected ?int $appId;
+    protected $appId;
 
     /**
      * @return string|null
@@ -29,7 +29,7 @@ class Response
     /**
      * @param string|null $type
      */
-    public function setType(?string $type)
+    public function setType($type)
     {
         $this->type = $type;
     }
@@ -45,7 +45,7 @@ class Response
     /**
      * @param string|null $eventType
      */
-    public function setEventType(?string $eventType)
+    public function setEventType($eventType)
     {
         $this->eventType = $eventType;
     }
@@ -61,7 +61,7 @@ class Response
     /**
      * @param string|null $createDate
      */
-    public function setCreateDate(?string $createDate)
+    public function setCreateDate($createDate)
     {
         $this->createDate = $createDate;
     }
@@ -77,7 +77,7 @@ class Response
     /**
      * @param string|null $createDateTimeZoneType
      */
-    public function setCreateDateTimeZoneType(?string $createDateTimeZoneType)
+    public function setCreateDateTimeZoneType($createDateTimeZoneType)
     {
         $this->createDateTimeZoneType = $createDateTimeZoneType;
     }
@@ -93,7 +93,7 @@ class Response
     /**
      * @param string|null $createDateTimeZone
      */
-    public function setCreateDateTimeZone(?string $createDateTimeZone)
+    public function setCreateDateTimeZone($createDateTimeZone)
     {
         $this->createDateTimeZone = $createDateTimeZone;
     }
@@ -109,7 +109,7 @@ class Response
     /**
      * @param string|null $requestID
      */
-    public function setRequestID(?string $requestID)
+    public function setRequestID($requestID)
     {
         $this->requestID = $requestID;
     }
@@ -125,7 +125,7 @@ class Response
     /**
      * @param int|null $appId
      */
-    public function setAppId(?int $appId)
+    public function setAppId($appId)
     {
         $this->appId = $appId;
     }
