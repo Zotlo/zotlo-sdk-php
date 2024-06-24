@@ -34,6 +34,11 @@ class Card
     private $cardHolderName = null;
 
     /**
+     * @var string
+     */
+    private $tokenId = null;
+
+    /**
      * @return string
      */
     public function getCardNumber()
@@ -122,6 +127,22 @@ class Card
     {
         $this->cardHolderName = $cardHolderName;
         return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTokenId()
+    {
+        return $this->tokenId;
+    }
+
+    /**
+     * @param string|null $tokenId
+     */
+    public function setTokenId(?string $tokenId): void
+    {
+        $this->tokenId = $tokenId;
     }
 
 
