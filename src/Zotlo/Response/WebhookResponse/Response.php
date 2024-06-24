@@ -21,7 +21,7 @@ class Response
     /**
      * @return string|null
      */
-    public function getType(): ?string
+    public function getType()
     {
         return $this->type;
     }
@@ -29,7 +29,7 @@ class Response
     /**
      * @param string|null $type
      */
-    public function setType(?string $type): void
+    public function setType(?string $type)
     {
         $this->type = $type;
     }
@@ -37,7 +37,7 @@ class Response
     /**
      * @return string|null
      */
-    public function getEventType(): ?string
+    public function getEventType()
     {
         return $this->eventType;
     }
@@ -45,7 +45,7 @@ class Response
     /**
      * @param string|null $eventType
      */
-    public function setEventType(?string $eventType): void
+    public function setEventType(?string $eventType)
     {
         $this->eventType = $eventType;
     }
@@ -53,7 +53,7 @@ class Response
     /**
      * @return string|null
      */
-    public function getCreateDate(): ?string
+    public function getCreateDate()
     {
         return $this->createDate;
     }
@@ -61,7 +61,7 @@ class Response
     /**
      * @param string|null $createDate
      */
-    public function setCreateDate(?string $createDate): void
+    public function setCreateDate(?string $createDate)
     {
         $this->createDate = $createDate;
     }
@@ -69,7 +69,7 @@ class Response
     /**
      * @return string|null
      */
-    public function getCreateDateTimeZoneType(): ?string
+    public function getCreateDateTimeZoneType()
     {
         return $this->createDateTimeZoneType;
     }
@@ -77,7 +77,7 @@ class Response
     /**
      * @param string|null $createDateTimeZoneType
      */
-    public function setCreateDateTimeZoneType(?string $createDateTimeZoneType): void
+    public function setCreateDateTimeZoneType(?string $createDateTimeZoneType)
     {
         $this->createDateTimeZoneType = $createDateTimeZoneType;
     }
@@ -85,7 +85,7 @@ class Response
     /**
      * @return string|null
      */
-    public function getCreateDateTimeZone(): ?string
+    public function getCreateDateTimeZone()
     {
         return $this->createDateTimeZone;
     }
@@ -93,7 +93,7 @@ class Response
     /**
      * @param string|null $createDateTimeZone
      */
-    public function setCreateDateTimeZone(?string $createDateTimeZone): void
+    public function setCreateDateTimeZone(?string $createDateTimeZone)
     {
         $this->createDateTimeZone = $createDateTimeZone;
     }
@@ -101,7 +101,7 @@ class Response
     /**
      * @return string|null
      */
-    public function getRequestID(): ?string
+    public function getRequestID()
     {
         return $this->requestID;
     }
@@ -109,7 +109,7 @@ class Response
     /**
      * @param string|null $requestID
      */
-    public function setRequestID(?string $requestID): void
+    public function setRequestID(?string $requestID)
     {
         $this->requestID = $requestID;
     }
@@ -117,7 +117,7 @@ class Response
     /**
      * @return int|null
      */
-    public function getAppId(): ?int
+    public function getAppId()
     {
         return $this->appId;
     }
@@ -125,7 +125,7 @@ class Response
     /**
      * @param int|null $appId
      */
-    public function setAppId(?int $appId): void
+    public function setAppId(?int $appId)
     {
         $this->appId = $appId;
     }

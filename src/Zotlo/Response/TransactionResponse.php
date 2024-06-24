@@ -119,7 +119,7 @@ class TransactionResponse
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -127,7 +127,7 @@ class TransactionResponse
     /**
      * @param int $id
      */
-    public function setId(int $id): void
+    public function setId(int $id)
     {
         $this->id = $id;
     }
@@ -135,7 +135,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getPaymentType(): ?string
+    public function getPaymentType()
     {
         return $this->payment_type;
     }
@@ -143,7 +143,7 @@ class TransactionResponse
     /**
      * @param string|null $payment_type
      */
-    public function setPaymentType(?string $payment_type): void
+    public function setPaymentType(?string $payment_type)
     {
         $this->payment_type = $payment_type;
     }
@@ -151,7 +151,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getOriginalTransactionId(): ?string
+    public function getOriginalTransactionId()
     {
         return $this->original_transaction_id;
     }
@@ -159,7 +159,7 @@ class TransactionResponse
     /**
      * @param string|null $original_transaction_id
      */
-    public function setOriginalTransactionId(?string $original_transaction_id): void
+    public function setOriginalTransactionId(?string $original_transaction_id)
     {
         $this->original_transaction_id = $original_transaction_id;
     }
@@ -167,7 +167,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getTransactionId(): ?string
+    public function getTransactionId()
     {
         return $this->transaction_id;
     }
@@ -175,7 +175,7 @@ class TransactionResponse
     /**
      * @param string|null $transaction_id
      */
-    public function setTransactionId(?string $transaction_id): void
+    public function setTransactionId(?string $transaction_id)
     {
         $this->transaction_id = $transaction_id;
     }
@@ -183,7 +183,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getPackageId(): ?string
+    public function getPackageId()
     {
         return $this->package_id;
     }
@@ -191,7 +191,7 @@ class TransactionResponse
     /**
      * @param string|null $package_id
      */
-    public function setPackageId(?string $package_id): void
+    public function setPackageId(?string $package_id)
     {
         $this->package_id = $package_id;
     }
@@ -199,7 +199,7 @@ class TransactionResponse
     /**
      * @return int
      */
-    public function getTeamId(): int
+    public function getTeamId()
     {
         return $this->team_id;
     }
@@ -207,7 +207,7 @@ class TransactionResponse
     /**
      * @param int $team_id
      */
-    public function setTeamId(int $team_id): void
+    public function setTeamId(int $team_id)
     {
         $this->team_id = $team_id;
     }
@@ -215,7 +215,7 @@ class TransactionResponse
     /**
      * @return int
      */
-    public function getAppId(): int
+    public function getAppId()
     {
         return $this->app_id;
     }
@@ -223,7 +223,7 @@ class TransactionResponse
     /**
      * @param int $app_id
      */
-    public function setAppId(int $app_id): void
+    public function setAppId(int $app_id)
     {
         $this->app_id = $app_id;
     }
@@ -231,7 +231,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getStatus(): ?string
+    public function getStatus()
     {
         return $this->status;
     }
@@ -239,7 +239,7 @@ class TransactionResponse
     /**
      * @param string|null $status
      */
-    public function setStatus(?string $status): void
+    public function setStatus(?string $status)
     {
         $this->status = $status;
     }
@@ -247,7 +247,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getCreateDate(): ?string
+    public function getCreateDate()
     {
         return $this->create_date;
     }
@@ -255,7 +255,7 @@ class TransactionResponse
     /**
      * @param string|null $create_date
      */
-    public function setCreateDate(?string $create_date): void
+    public function setCreateDate(?string $create_date)
     {
         $this->create_date = $create_date;
     }
@@ -263,7 +263,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getPurchaseDate(): ?string
+    public function getPurchaseDate()
     {
         return $this->purchase_date;
     }
@@ -271,7 +271,7 @@ class TransactionResponse
     /**
      * @param string|null $purchase_date
      */
-    public function setPurchaseDate(?string $purchase_date): void
+    public function setPurchaseDate(?string $purchase_date)
     {
         $this->purchase_date = $purchase_date;
     }
@@ -279,7 +279,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getOriginalPurchaseDate(): ?string
+    public function getOriginalPurchaseDate()
     {
         return $this->original_purchase_date;
     }
@@ -287,7 +287,7 @@ class TransactionResponse
     /**
      * @param string|null $original_purchase_date
      */
-    public function setOriginalPurchaseDate(?string $original_purchase_date): void
+    public function setOriginalPurchaseDate(?string $original_purchase_date)
     {
         $this->original_purchase_date = $original_purchase_date;
     }
@@ -295,7 +295,7 @@ class TransactionResponse
     /**
      * @return float|int
      */
-    public function getPrice(): float|int
+    public function getPrice()
     {
         return $this->price;
     }
@@ -303,7 +303,7 @@ class TransactionResponse
     /**
      * @param float|int $price
      */
-    public function setPrice(float|int $price): void
+    public function setPrice(float|int $price)
     {
         $this->price = $price;
     }
@@ -311,7 +311,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getCurrency(): ?string
+    public function getCurrency()
     {
         return $this->currency;
     }
@@ -319,7 +319,7 @@ class TransactionResponse
     /**
      * @param string|null $currency
      */
-    public function setCurrency(?string $currency): void
+    public function setCurrency(?string $currency)
     {
         $this->currency = $currency;
     }
@@ -327,7 +327,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getCountry(): ?string
+    public function getCountry()
     {
         return $this->country;
     }
@@ -335,7 +335,7 @@ class TransactionResponse
     /**
      * @param string|null $country
      */
-    public function setCountry(?string $country): void
+    public function setCountry(?string $country)
     {
         $this->country = $country;
     }
@@ -343,7 +343,7 @@ class TransactionResponse
     /**
      * @return|null string
      */
-    public function getExpireDate(): ?string
+    public function getExpireDate()
     {
         return $this->expire_date;
     }
@@ -351,7 +351,7 @@ class TransactionResponse
     /**
      * @param string|null $expire_date
      */
-    public function setExpireDate(?string $expire_date): void
+    public function setExpireDate(?string $expire_date)
     {
         $this->expire_date = $expire_date;
     }
@@ -359,7 +359,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getSubscriberId(): ?string
+    public function getSubscriberId()
     {
         return $this->subscriber_id;
     }
@@ -367,7 +367,7 @@ class TransactionResponse
     /**
      * @param string|null $subscriber_id
      */
-    public function setSubscriberId(?string $subscriber_id): void
+    public function setSubscriberId(?string $subscriber_id)
     {
         $this->subscriber_id = $subscriber_id;
     }
@@ -375,7 +375,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getCreditCard(): ?string
+    public function getCreditCard()
     {
         return $this->credit_card;
     }
@@ -383,7 +383,7 @@ class TransactionResponse
     /**
      * @param string|null $credit_card
      */
-    public function setCreditCard(?string $credit_card): void
+    public function setCreditCard(?string $credit_card)
     {
         $this->credit_card = $credit_card;
     }
@@ -391,7 +391,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getRefundPrice(): ?string
+    public function getRefundPrice()
     {
         return $this->refund_price;
     }
@@ -399,7 +399,7 @@ class TransactionResponse
     /**
      * @param string|null $refund_price
      */
-    public function setRefundPrice(?string $refund_price): void
+    public function setRefundPrice(?string $refund_price)
     {
         $this->refund_price = $refund_price;
     }
@@ -407,7 +407,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getRefundDate(): ?string
+    public function getRefundDate()
     {
         return $this->refund_date;
     }
@@ -415,7 +415,7 @@ class TransactionResponse
     /**
      * @param string|null $refund_date
      */
-    public function setRefundDate(?string $refund_date): void
+    public function setRefundDate(?string $refund_date)
     {
         $this->refund_date = $refund_date;
     }
@@ -423,7 +423,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getRefundReason(): ?string
+    public function getRefundReason()
     {
         return $this->refund_reason;
     }
@@ -431,7 +431,7 @@ class TransactionResponse
     /**
      * @param string|null $refund_reason
      */
-    public function setRefundReason(?string $refund_reason): void
+    public function setRefundReason(?string $refund_reason)
     {
         $this->refund_reason = $refund_reason;
     }
@@ -439,7 +439,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getIsRefund(): ?string
+    public function getIsRefund()
     {
         return $this->is_refund;
     }
@@ -447,7 +447,7 @@ class TransactionResponse
     /**
      * @param string|null $is_refund
      */
-    public function setIsRefund(?string $is_refund): void
+    public function setIsRefund(?string $is_refund)
     {
         $this->is_refund = $is_refund;
     }
@@ -455,7 +455,7 @@ class TransactionResponse
     /**
      * @return int
      */
-    public function getProviderId(): int
+    public function getProviderId()
     {
         return $this->provider_id;
     }
@@ -463,7 +463,7 @@ class TransactionResponse
     /**
      * @param int $provider_id
      */
-    public function setProviderId(int $provider_id): void
+    public function setProviderId(int $provider_id)
     {
         $this->provider_id = $provider_id;
     }
@@ -471,7 +471,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getProviderTransactionId(): ?string
+    public function getProviderTransactionId()
     {
         return $this->provider_transaction_id;
     }
@@ -479,7 +479,7 @@ class TransactionResponse
     /**
      * @param string|null $provider_transaction_id
      */
-    public function setProviderTransactionId(?string $provider_transaction_id): void
+    public function setProviderTransactionId(?string $provider_transaction_id)
     {
         $this->provider_transaction_id = $provider_transaction_id;
     }
@@ -487,7 +487,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getProviderStatus(): ?string
+    public function getProviderStatus()
     {
         return $this->provider_status;
     }
@@ -495,7 +495,7 @@ class TransactionResponse
     /**
      * @param string|null $provider_status
      */
-    public function setProviderStatus(?string $provider_status): void
+    public function setProviderStatus(?string $provider_status)
     {
         $this->provider_status = $provider_status;
     }
@@ -503,7 +503,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getProviderName(): ?string
+    public function getProviderName()
     {
         return $this->provider_name;
     }
@@ -511,7 +511,7 @@ class TransactionResponse
     /**
      * @param string|null $provider_name
      */
-    public function setProviderName(?string $provider_name): void
+    public function setProviderName(?string $provider_name)
     {
         $this->provider_name = $provider_name;
     }
@@ -519,7 +519,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getComment(): ?string
+    public function getComment()
     {
         return $this->comment;
     }
@@ -527,7 +527,7 @@ class TransactionResponse
     /**
      * @param string|null $comment
      */
-    public function setComment(?string $comment): void
+    public function setComment(?string $comment)
     {
         $this->comment = $comment;
     }
@@ -535,7 +535,7 @@ class TransactionResponse
     /**
      * @return int
      */
-    public function getQuantity(): int
+    public function getQuantity()
     {
         return $this->quantity;
     }
@@ -543,7 +543,7 @@ class TransactionResponse
     /**
      * @param int $quantity
      */
-    public function setQuantity(int $quantity): void
+    public function setQuantity(int $quantity)
     {
         $this->quantity = $quantity;
     }
@@ -551,7 +551,7 @@ class TransactionResponse
     /**
      * @return float|int
      */
-    public function getPackagePrice(): float|int
+    public function getPackagePrice()
     {
         return $this->package_price;
     }
@@ -559,7 +559,7 @@ class TransactionResponse
     /**
      * @param float|int $package_price
      */
-    public function setPackagePrice(float|int $package_price): void
+    public function setPackagePrice(float|int $package_price)
     {
         $this->package_price = $package_price;
     }
@@ -567,7 +567,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getSubscriptionId(): ?string
+    public function getSubscriptionId()
     {
         return $this->subscription_id;
     }
@@ -575,7 +575,7 @@ class TransactionResponse
     /**
      * @param string|null $subscription_id
      */
-    public function setSubscriptionId(?string $subscription_id): void
+    public function setSubscriptionId(?string $subscription_id)
     {
         $this->subscription_id = $subscription_id;
     }
@@ -583,7 +583,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getIsTransfer(): ?string
+    public function getIsTransfer()
     {
         return $this->is_transfer;
     }
@@ -591,7 +591,7 @@ class TransactionResponse
     /**
      * @param string|null $is_transfer
      */
-    public function setIsTransfer(?string $is_transfer): void
+    public function setIsTransfer(?string $is_transfer)
     {
         $this->is_transfer = $is_transfer;
     }
@@ -599,7 +599,7 @@ class TransactionResponse
     /**
      * @return array|null
      */
-    public function getCustomParameters(): ?array
+    public function getCustomParameters()
     {
         return $this->custom_parameters;
     }
@@ -607,7 +607,7 @@ class TransactionResponse
     /**
      * @param array|null $custom_parameters
      */
-    public function setCustomParameters(?array $custom_parameters): void
+    public function setCustomParameters(?array $custom_parameters)
     {
         $this->custom_parameters = $custom_parameters;
     }
@@ -615,7 +615,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getPaymentMethod(): ?string
+    public function getPaymentMethod()
     {
         return $this->paymentMethod;
     }
@@ -623,7 +623,7 @@ class TransactionResponse
     /**
      * @param string|null $paymentMethod
      */
-    public function setPaymentMethod(?string $paymentMethod): void
+    public function setPaymentMethod(?string $paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
     }
@@ -631,7 +631,7 @@ class TransactionResponse
     /**
      * @return int|null
      */
-    public function getInstallment(): ?int
+    public function getInstallment()
     {
         return $this->installment;
     }
@@ -639,7 +639,7 @@ class TransactionResponse
     /**
      * @param int|null $installment
      */
-    public function setInstallment(?int $installment): void
+    public function setInstallment(?int $installment)
     {
         $this->installment = $installment;
     }
@@ -647,7 +647,7 @@ class TransactionResponse
     /**
      * @return array|null
      */
-    public function getExchange(): ?array
+    public function getExchange()
     {
         return $this->exchange;
     }
@@ -655,7 +655,7 @@ class TransactionResponse
     /**
      * @param array|null $exchange
      */
-    public function setExchange(?array $exchange): void
+    public function setExchange(?array $exchange)
     {
         $this->exchange = $exchange;
     }
@@ -663,7 +663,7 @@ class TransactionResponse
     /**
      * @return array|null
      */
-    public function getCouponCampaign(): ?array
+    public function getCouponCampaign()
     {
         return $this->coupon_campaign;
     }
@@ -671,7 +671,7 @@ class TransactionResponse
     /**
      * @param array|null $coupon_campaign
      */
-    public function setCouponCampaign(?array $coupon_campaign): void
+    public function setCouponCampaign(?array $coupon_campaign)
     {
         $this->coupon_campaign = $coupon_campaign;
     }
@@ -679,7 +679,7 @@ class TransactionResponse
     /**
      * @return string|null
      */
-    public function getLanguage(): ?string
+    public function getLanguage()
     {
         return $this->language;
     }
@@ -687,7 +687,7 @@ class TransactionResponse
     /**
      * @param string|null $language
      */
-    public function setLanguage(?string $language): void
+    public function setLanguage(?string $language)
     {
         $this->language = $language;
     }

@@ -132,7 +132,7 @@ class Card
     /**
      * @return string|null
      */
-    public function getTokenId(): ?string
+    public function getTokenId()
     {
         return $this->tokenId;
     }
