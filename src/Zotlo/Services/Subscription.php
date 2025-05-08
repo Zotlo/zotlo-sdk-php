@@ -15,6 +15,8 @@ use Zotlo\Connect\Entity\Profile\Profile;
 use Zotlo\Connect\Entity\Request;
 use Zotlo\Connect\Entity\Subscriber;
 use Zotlo\Connect\Entity\SubscriberCancellation;
+use Zotlo\Connect\Entity\SubscriberFreeze;
+use Zotlo\Connect\Entity\SubscriberUnfreeze;
 use Zotlo\Connect\Exception\PaymentException;
 use Zotlo\Connect\Response\ChangePackageResponse;
 use Zotlo\Connect\Response\PackageDowngradeCancelResponse;
@@ -24,6 +26,8 @@ use Zotlo\Connect\Response\SavedCardResponse;
 use Zotlo\Connect\Response\SubscriberCancellationResponse;
 use Zotlo\Connect\Response\SubscriberListResponse;
 use Zotlo\Connect\Response\SubscriberProfileResponse;
+use Zotlo\Connect\Response\SubscriptionFreezeResponse;
+use Zotlo\Connect\Response\SubscriptionUnfreezeResponse;
 
 /**
  * Class Payment
@@ -59,6 +63,16 @@ class Subscription extends HttpClient
      * @var SubscriberCancellation
      */
     private $cancellation = null;
+
+    /**
+     * @var null|SubscriberFreeze
+     */
+    private $freeze = null;
+
+    /**
+     * @var null|SubscriberUnfreeze
+     */
+    private $unfreeze = null;
 
 
     /**
@@ -165,6 +179,41 @@ class Subscription extends HttpClient
         return $this;
     }
 
+    /**
+     * @return SubscriberFreeze|null
+     */
+    public function getFreeze(): ?SubscriberFreeze
+    {
+        return $this->freeze;
+    }
+
+    /**
+     * @param SubscriberFreeze|null $freeze
+     * @return $this
+     */
+    public function setFreeze(?SubscriberFreeze $freeze): Subscription
+    {
+        $this->freeze = $freeze;
+        return $this;
+    }
+
+    /**
+     * @return SubscriberUnfreeze|null
+     */
+    public function getUnfreeze(): ?SubscriberUnfreeze
+    {
+        return $this->unfreeze;
+    }
+
+    /**
+     * @param SubscriberUnfreeze|null $unfreeze
+     * @return $this
+     */
+    public function setUnfreeze(?SubscriberUnfreeze $unfreeze): Subscription
+    {
+        $this->unfreeze = $unfreeze;
+        return $this;
+    }
 
     /**
      * Payment constructor.
@@ -367,6 +416,63 @@ class Subscription extends HttpClient
         return (new PurchaseListResponse($response['result']))->getList();
 
     }
+
+    /**
+     * @return SubscriptionFreezeResponse
+     * @throws PaymentException
+     */
+    public function freeze(): SubscriptionFreezeResponse
+    {
+        $subscriberId = trim($this->getFreeze()->getSubscriberId());
+        $packageId = trim($this->getFreeze()->getPackageId());
+        $endDate = trim($this->getFreeze()->getEndDate());
+
+        if (empty($subscriberId) || empty($packageId)) {
+            throw new \InvalidArgumentException('subscriberId or packageId or endDate is required.');
+        }
+
+        if(empty($endDate)){
+            throw new \InvalidArgumentException('endDate is required.');
+        }
+
+        $checkDate = \DateTime::createFromFormat('Y-m-d H:i:s', $endDate);
+        if ($checkDate === false) {
+            throw new \InvalidArgumentException('endDate is invalid. Expected format: Y-m-d H:i:s');
+        }
+
+        $response = $this->post('subscription/freeze', [
+            'subscriberId' => $subscriberId,
+            'packageId' => $packageId,
+            'endDate' => $endDate,
+        ]);
+
+        return new SubscriptionFreezeResponse($response);
+
+    }
+
+    /**
+     * @return SubscriptionUnfreezeResponse
+     * @throws PaymentException
+     */
+    public function unfreeze(): SubscriptionUnfreezeResponse
+    {
+        $subscriberId = trim($this->getUnfreeze()->getSubscriberId());
+        $packageId = trim($this->getUnfreeze()->getPackageId());
+
+        if (empty($subscriberId) || empty($packageId)) {
+            throw new \InvalidArgumentException('subscriberId or packageId or endDate is required.');
+        }
+
+        $response = $this->post('subscription/unfreeze', [
+            'subscriberId' => $subscriberId,
+            'packageId' => $packageId
+        ]);
+
+        return new SubscriptionUnfreezeResponse($response);
+
+    }
+
+
 
 
 }
