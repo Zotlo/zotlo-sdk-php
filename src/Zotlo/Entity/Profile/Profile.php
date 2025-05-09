@@ -80,6 +80,11 @@ class Profile
     private $renewalFetchCount = 0;
 
     /**
+     * @var string|null
+     */
+    private $freezeEndDate = null;
+
+    /**
      * @return string
      */
     public function getStatus()
@@ -221,6 +226,22 @@ class Profile
         $this->renewalFetchCount = $renewalFetchCount;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getFreezeEndDate()
+    {
+        return $this->freezeEndDate;
+    }
+
+    /**
+     * @param $freezeEndDate
+     * @return void
+     */
+    public function setFreezeEndDate($freezeEndDate)
+    {
+        $this->freezeEndDate = $freezeEndDate;
+    }
 
     /**
      * Transaction constructor.
@@ -245,6 +266,7 @@ class Profile
         $this->customParameters = $result['customParameters'] ?? null;
         $this->cancellation = isset($result['cancellation']) ? new ProfileCancellation($result['cancellation']) : null;
         $this->renewalFetchCount = isset($result['renewalFetchCount']) ? (int)$result['renewalFetchCount'] : 0;
+        $this->freezeEndDate = $result['freezeEndDate'] ?? null;
     }
 
 }
