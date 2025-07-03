@@ -34,6 +34,11 @@ class CardItem
     private $createDate;
 
     /**
+     * @var string
+     */
+    private $tokenType;
+
+    /**
      * @var boolean
      */
     private $deletable;
@@ -89,6 +94,12 @@ class CardItem
     }
 
 
+    public function getTokenType()
+    {
+        return $this->tokenType;
+    }
+
+
     public function __construct($result)
     {
         $this->id = isset($result['id']) ? (int)$result['id'] : 0;
@@ -96,6 +107,7 @@ class CardItem
         $this->cardNumber = $result['cardNumber'] ?? null;
         $this->cardExpire = $result['cardExpire'] ?? null;
         $this->createDate = $result['createDate'] ?? null;
+        $this->tokenType = $result['tokenType'] ?? null;
         $this->deletable = $result['deletable'] ?? true;
     }
 
