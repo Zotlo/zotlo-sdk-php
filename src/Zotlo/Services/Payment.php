@@ -647,6 +647,7 @@ class Payment extends HttpClient
             'subscriberLastname' => $this->getSubscriber()->getLastName(),
             'subscriberEmail' => $this->getSubscriber()->getEmail(),
             'subscriberIpAddress' => $this->getSubscriber()->getIpAddress(),
+            'customParameters' => $this->getSubscriber()->getCustomParams(),
             'redirectUrl' => $this->redirect ? $this->getRedirect()->getRedirectUrl() : '',
             'force3ds' => $this->isForce3ds() ? 1 : 0,
         ];
