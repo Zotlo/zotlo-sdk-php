@@ -37,6 +37,11 @@ class Request
     private $apiVersion = Constants::API_ACTIVE_VERSION_V1;
 
     /**
+     * @var bool
+     */
+    private $isSandbox = false;
+
+    /**
      * @return string
      */
     public function getPlatform()
@@ -142,5 +147,21 @@ class Request
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function isSandbox(): bool
+    {
+        return $this->isSandbox;
+    }
+
+    /**
+     * @param bool $isSandbox
+     * @return void
+     */
+    public function setIsSandbox(bool $isSandbox): void
+    {
+        $this->isSandbox = $isSandbox;
+    }
 
 }
