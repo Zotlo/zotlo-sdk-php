@@ -240,6 +240,7 @@ class Subscription extends HttpClient
         $response = $this->get('subscription/profile', [
             'subscriberId' => $subscriberId,
             'packageId' => $packageId,
+            'isSandbox' => $this->request->isSandbox()
         ]);
 
         return new SubscriberProfileResponse($response);

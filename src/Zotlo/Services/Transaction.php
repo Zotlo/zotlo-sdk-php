@@ -127,6 +127,7 @@ class Transaction extends HttpClient
     {
         $response = $this->get('transaction/detail', [
             'transactionId' => $this->getTransaction()->getTransactionId(),
+            'isSandbox' => $this->request->isSandbox()
         ]);
 
         return new TransactionDetailResponse($response);
