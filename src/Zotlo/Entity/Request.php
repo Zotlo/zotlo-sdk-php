@@ -166,4 +166,4 @@ class Request
         return $this;
     }
 
-}so
+}
