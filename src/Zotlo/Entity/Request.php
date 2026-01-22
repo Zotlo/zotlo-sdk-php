@@ -150,18 +150,20 @@ class Request
     /**
      * @return bool
      */
-    public function isSandbox(): bool
+    public function isSandbox()
     {
         return $this->isSandbox;
     }
 
     /**
      * @param bool $isSandbox
-     * @return void
+     * @return $this
      */
-    public function setIsSandbox(bool $isSandbox): void
+    public function setIsSandbox($isSandbox): Request
     {
         $this->isSandbox = $isSandbox;
+
+        return $this;
     }
 
-}
+}so
