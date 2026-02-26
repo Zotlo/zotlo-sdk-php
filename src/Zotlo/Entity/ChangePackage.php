@@ -28,6 +28,21 @@ class ChangePackage
     public $changeType;
 
     /**
+     * @var int|null
+     */
+    public $saveCycle = null;
+
+    /**
+     * @var bool|null
+     */
+    public $keepDiscount = null;
+
+    /**
+     * @var string|null
+     */
+    public $discountCode = null;
+
+    /**
      * @return string
      */
     public function getPackageId()
@@ -78,6 +93,60 @@ class ChangePackage
     public function setChangeType($changeType)
     {
         $this->changeType = $changeType;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getSaveCycle()
+    {
+        return $this->saveCycle;
+    }
+
+    /**
+     * @param int|null $saveCycle
+     * @return $this
+     */
+    public function setSaveCycle($saveCycle)
+    {
+        $this->saveCycle = $saveCycle;
+        return $this;
+    }
+
+    /**
+     * @return bool|null
+     */
+    public function getKeepDiscount()
+    {
+        return $this->keepDiscount;
+    }
+
+    /**
+     * @param bool|null $keepDiscount
+     * @return $this
+     */
+    public function setKeepDiscount($keepDiscount)
+    {
+        $this->keepDiscount = $keepDiscount;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDiscountCode()
+    {
+        return $this->discountCode;
+    }
+
+    /**
+     * @param string|null $discountCode
+     * @return $this
+     */
+    public function setDiscountCode($discountCode)
+    {
+        $this->discountCode = $discountCode;
         return $this;
     }
 
