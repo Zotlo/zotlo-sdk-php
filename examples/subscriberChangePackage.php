@@ -37,7 +37,7 @@ $request->setSslVerify(false);
 $changePackage = new \Zotlo\Connect\Entity\ChangePackage();
 $changePackage->setNewPackageId('web_zotlo_exclusive_monthly1');
 $changePackage->setChangeType('downgrade');
-$changePackage->setSaveCycle(3);
+$changePackage->setSaveCycle(1);
 $changePackage->setKeepDiscount(true);
 $changePackage->setDiscountCode('PROMO2024');
 

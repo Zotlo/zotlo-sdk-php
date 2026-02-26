@@ -36,7 +36,7 @@ $request->setSslVerify(false);
 $changePackage = new \Zotlo\Connect\Entity\ChangePackage();
 $changePackage->setNewPackageId('web_zotlo_business');
 $changePackage->setChangeType('upgrade');
-$changePackage->setSaveCycle(6);
+$changePackage->setSaveCycle(1);
 $changePackage->setKeepDiscount(false);
 $changePackage->setDiscountCode('UPGRADE50');
 
