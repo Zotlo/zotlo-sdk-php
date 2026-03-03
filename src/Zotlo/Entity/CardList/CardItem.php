@@ -105,22 +105,6 @@ class CardItem
     }
 
     /**
-     * @return bool|mixed
-     */
-    public function getDeletable()
-    {
-        return $this->deletable;
-    }
-
-    /**
-     * @param bool|mixed $deletable
-     */
-    public function setDeletable($deletable): void
-    {
-        $this->deletable = $deletable;
-    }
-
-    /**
      * @return array|mixed
      */
     public function getCardInfo()
