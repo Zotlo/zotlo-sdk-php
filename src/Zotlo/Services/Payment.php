@@ -412,6 +412,10 @@ class Payment extends HttpClient
             'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
 
+        if ($this->getProduct()->getDiscountCode() !== null) {
+            $requestData['discountCode'] = $this->getProduct()->getDiscountCode();
+        }
+
         $response = $this->post('payment/credit-card', $requestData);
         $salesResponse = new SaleResponse($response);
         return $salesResponse;
@@ -448,6 +452,9 @@ class Payment extends HttpClient
             'cvv' => $this->getCardToken()->getCvv(),
         ];
 
+        if ($this->getProduct()->getDiscountCode() !== null) {
+            $requestData['discountCode'] = $this->getProduct()->getDiscountCode();
+        }
 
         $response = $this->post('payment/credit-card', $requestData);
         $salesResponse = new SaleResponse($response);
@@ -682,6 +689,18 @@ class Payment extends HttpClient
             $requestData['cardToken'] = $this->getCardToken()->getToken();
         }
 
+        if ($this->getChangePackage()->getSaveCycle() !== null) {
+            $requestData['saveCycle'] = $this->getChangePackage()->getSaveCycle();
+        }
+
+        if ($this->getChangePackage()->getKeepDiscount() !== null) {
+            $requestData['keepDiscount'] = $this->getChangePackage()->getKeepDiscount();
+        }
+
+        if ($this->getChangePackage()->getDiscountCode() !== null) {
+            $requestData['discountCode'] = $this->getChangePackage()->getDiscountCode();
+        }
+
         $response = $this->post('payment/change-package', $requestData);
         $salesResponse = new SaleResponse($response);
         return $salesResponse;
@@ -703,6 +722,18 @@ class Payment extends HttpClient
             'changeType' => $this->getChangePackage()->getChangeType(),
             'customParameters' => $this->getSubscriber()->getCustomParams(),
         ];
+
+        if ($this->getChangePackage()->getSaveCycle() !== null) {
+            $requestData['saveCycle'] = $this->getChangePackage()->getSaveCycle();
+        }
+
+        if ($this->getChangePackage()->getKeepDiscount() !== null) {
+            $requestData['keepDiscount'] = $this->getChangePackage()->getKeepDiscount();
+        }
+
+        if ($this->getChangePackage()->getDiscountCode() !== null) {
+            $requestData['discountCode'] = $this->getChangePackage()->getDiscountCode();
+        }
 
         $response = $this->post('payment/change-package-request', $requestData);
         return new CreateFormUrlResponse($response);
