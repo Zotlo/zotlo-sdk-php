@@ -44,6 +44,11 @@ class CardItem
     private $deletable;
 
     /**
+     * @var array
+     */
+    private $cardInfo;
+
+    /**
      * @return string
      */
     public function getToken()
@@ -99,6 +104,38 @@ class CardItem
         return $this->tokenType;
     }
 
+    /**
+     * @return bool|mixed
+     */
+    public function getDeletable()
+    {
+        return $this->deletable;
+    }
+
+    /**
+     * @param bool|mixed $deletable
+     */
+    public function setDeletable($deletable): void
+    {
+        $this->deletable = $deletable;
+    }
+
+    /**
+     * @return array|mixed
+     */
+    public function getCardInfo()
+    {
+        return $this->cardInfo;
+    }
+
+    /**
+     * @param array|mixed $cardInfo
+     */
+    public function setCardInfo($cardInfo): void
+    {
+        $this->cardInfo = $cardInfo;
+    }
+
 
     public function __construct($result)
     {
@@ -109,6 +146,7 @@ class CardItem
         $this->createDate = $result['createDate'] ?? null;
         $this->tokenType = $result['tokenType'] ?? null;
         $this->deletable = $result['deletable'] ?? true;
+        $this->cardInfo = $result['cardInfo'] ?? [];
     }
 
 }
